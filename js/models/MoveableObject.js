@@ -1,30 +1,47 @@
 class MoveableObject {
-    x = 0;
-    y = 250;
+    x = 120;
+    y = 200;
     img;
-    width = 150;
-    height = 100;
+    height = 150;
+    width = 100;
+    imageCache = {}; // Cache for multiple images
 
-
-    loadImage(path){
-        this.img = new Image();
-        this.img.src = path;
+    /**
+     * Loads a single image and sets it as the current image.
+     * @param {string} path - The path to the image.
+     */
+    loadImage(path) {
+        const img = new Image();
+        img.src = path;
+        this.imageCache[path] = img; // Corrected to use imageCache
+        this.img = img; // Set the current image
     }
 
-    moveRight(){
-        console.log("Moving right");
+    /**
+     * Loads multiple images and stores them in the cache.
+     * @param {string[]} paths - An array of image paths.
+     */
+    loadImages(paths) {
+        paths.forEach((path) => {
+            const img = new Image();
+            img.src = path;
+            this.imageCache[path] = img;
+        });
     }
 
-    moveLeft(){
-        console.log("Moving left");
+    /**
+     * Moves the object horizontally.
+     * @param {number} distance - The distance to move the object.
+     */
+    moveRight(distance) {
+        this.x += distance;
     }
 
-    moveUp(){
-        console.log("Moving up");
+    /**
+     * Moves the object vertically.
+     * @param {number} distance - The distance to move the object.
+     */
+    moveDown(distance) {
+        this.y += distance;
     }
-
-    moveDown(){
-        console.log("Moving down");
-    }
-
 }
