@@ -11,6 +11,7 @@ class Character extends MoveableObject {
         '../../img/1.Sharkie/3.Swim/5.png',
         '../../img/1.Sharkie/3.Swim/6.png',
     ];
+    world;
 
     constructor() {
         super().loadImage('../../img/1.Sharkie/3.Swim/1.png');
