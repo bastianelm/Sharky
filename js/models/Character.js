@@ -1,7 +1,8 @@
 class Character extends MoveableObject {
     height = 250;
     width = 250;
-    y = 200;
+    y = 50;
+    x = 20;
     IMAGE_SWIMMING = [
         '../../img/1.Sharkie/3.Swim/1.png',
         '../../img/1.Sharkie/3.Swim/2.png',
@@ -10,8 +11,6 @@ class Character extends MoveableObject {
         '../../img/1.Sharkie/3.Swim/5.png',
         '../../img/1.Sharkie/3.Swim/6.png',
     ];
-
-    currentImage = 0;
 
     constructor() {
         super().loadImage('../../img/1.Sharkie/3.Swim/1.png');
@@ -26,7 +25,6 @@ class Character extends MoveableObject {
             let path = this.IMAGE_SWIMMING[i]; // Use the correct index
             this.img = this.imageCache[path]; // Update the current image
             this.currentImage++;
-            this.x += 15;
-        }, 250);
+        }, 150);
     }
 }

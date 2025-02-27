@@ -5,6 +5,8 @@ class MoveableObject {
     height = 150;
     width = 100;
     imageCache = {}; // Cache for multiple images
+    currentImage = 0;
+    speed = 0.15;
 
     /**
      * Loads a single image and sets it as the current image.
@@ -29,19 +31,10 @@ class MoveableObject {
         });
     }
 
-    /**
-     * Moves the object horizontally.
-     * @param {number} distance - The distance to move the object.
-     */
-    moveRight(distance) {
-        this.x += distance;
+    moveLeft(){
+        setInterval(()=>{
+            this.x -= this.speed;
+        }, 1000/60)        
     }
 
-    /**
-     * Moves the object vertically.
-     * @param {number} distance - The distance to move the object.
-     */
-    moveDown(distance) {
-        this.y += distance;
-    }
 }
