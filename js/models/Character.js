@@ -22,12 +22,17 @@ class Character extends MoveableObject {
 
     animate() {
         setInterval(() => {
-            if(this.world.keyboard.RIGHT){
-                let i = this.currentImage % this.IMAGE_SWIMMING.length;
-                let path = this.IMAGE_SWIMMING[i]; // Use the correct index
-                this.img = this.imageCache[path]; // Update the current image
-                this.currentImage++;
+            if (this.world && this.world.keyboard) {
+                if (this.world.keyboard.RIGHT) {
+                    let i = this.currentImage % this.IMAGE_SWIMMING.length;
+                    let path = this.IMAGE_SWIMMING[i];
+                    if (this.imageCache[path]) {
+                        this.img = this.imageCache[path];
+                        this.currentImage++;
+                    }
+                }
             }
         }, 150);
     }
+    
 }
