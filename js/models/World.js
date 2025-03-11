@@ -39,12 +39,14 @@ class World {
 
     addToMap(mo) {
         if (mo.otherDirection) {
+            //turns around the image
             this.ctx.save();
             this.ctx.translate(mo.x + mo.width / 2, mo.y + mo.height / 2);
             this.ctx.scale(-1, 1);
             this.ctx.drawImage(mo.img, -mo.width / 2, -mo.height / 2, mo.width, mo.height);
             this.ctx.restore();
         } else {
+            //normal drawing
             this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
         }
     }
