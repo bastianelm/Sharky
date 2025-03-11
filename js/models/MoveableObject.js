@@ -7,6 +7,7 @@ class MoveableObject {
     imageCache = {}; // Cache for multiple images
     currentImage = 0;
     speed = 0.15;
+    otherDirection = false;
 
     /**
      * Loads a single image and sets it as the current image.
@@ -34,7 +35,7 @@ class MoveableObject {
     moveLeft(){
         setInterval(()=>{
             this.x -= this.speed;
-        }, 1000/60)        
+        }, 100)        
     }
 
 }
