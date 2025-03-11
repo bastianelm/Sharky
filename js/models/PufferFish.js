@@ -2,7 +2,7 @@ class PufferFish extends MoveableObject{
     y = 350;
     height = 60;
     width = 86;
-    speed = 0.15;
+    speed = 2 + Math.random() * 3; // Minimum 3, Maximum 5
 
     IMAGE_SWIMMING = [
         '../../img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
@@ -17,7 +17,7 @@ class PufferFish extends MoveableObject{
         this.loadImages(this.IMAGE_SWIMMING);
         this.x = 720 - this.width;
         this.y = Math.max(this.height / 2, Math.min(480 - this.height / 2, Math.random() * (480 - this.height)));
-        this.speed = 0.15 + Math.random()*1.75;
+        //this.speed = 0.15 + Math.random()*1.75;
         this.animate();
     }
 

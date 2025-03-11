@@ -1,4 +1,4 @@
-class MoveableObject {
+class MoveableObject{
     x = 120;
     y = 200;
     img;
@@ -37,5 +37,5 @@ class MoveableObject {
             this.x -= this.speed;
         }, 100)        
     }
-    
+
 }
