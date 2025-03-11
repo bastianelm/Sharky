@@ -36,6 +36,9 @@ class Character extends MoveableObject {
                         this.img = this.imageCache[path];
                         this.currentImage++;
                     }
+                    //sets camera position to opposite of character x
+                    this.world.cameraX = -this.x;
+                    this.world.ctx.translate(this.world.cameraX, 0);
                 }
                 if(this.world.keyboard.DOWN || this.world.keyboard.UP){
                     if(this.world.keyboard.DOWN){

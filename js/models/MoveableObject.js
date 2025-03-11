@@ -37,5 +37,5 @@ class MoveableObject {
             this.x -= this.speed;
         }, 100)        
     }
-
+    
 }

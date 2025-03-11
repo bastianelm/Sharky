@@ -1,6 +1,6 @@
 class World {
     character = new Character();
-    
+
     enemies = [
         new PufferFish(),
         new PufferFish(),
@@ -10,10 +10,14 @@ class World {
 
     backgroundObjects = [
         new BackgroundObject("../../img/3. Background/Layers/5. Water/D1.png",0),
-        new BackgroundObject("../../img/3. Background/Legacy/Layers/4.Fondo 2/D1.png", 0),
-        new BackgroundObject("../../img/3. Background/Layers/2. Floor/D1.png",0),
+        //new BackgroundObject("../../img/3. Background/Legacy/Layers/4.Fondo 2/D1.png", 0),
+        //new BackgroundObject("../../img/3. Background/Layers/2. Floor/D1.png",0),
+        new BackgroundObject("../../img/3. Background/Layers/5. Water/D2.png",720),
+        //new BackgroundObject("../../img/3. Background/Legacy/Layers/4.Fondo 2/D2.png", 720),
+        //new BackgroundObject("../../img/3. Background/Layers/2. Floor/D2.png",720),
     ];
 
+    cameraX = 0;
 
     canvas;
     ctx;
