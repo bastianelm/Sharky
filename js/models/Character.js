@@ -37,6 +37,13 @@ class Character extends MoveableObject {
                         this.currentImage++;
                     }
                 }
+                if(this.world.keyboard.DOWN || this.world.keyboard.UP){
+                    if(this.world.keyboard.DOWN){
+                        this.y += this.speed;
+                    } else{
+                        this.y -= this.speed;                        
+                    }
+                }
             }    
         }, 100);
     }
