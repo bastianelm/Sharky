@@ -1,24 +1,7 @@
 class World {
-    character = new Character();
 
-    enemies = [
-        new PufferFish(),
-        new PufferFish(),
-        new PufferFish(),
-    ];
-
-
-    backgroundObjects = [
-        new BackgroundObject("../../img/3. Background/Layers/5. Water/D1.png",-719),
-        new BackgroundObject("../../img/3. Background/Legacy/Layers/4.Fondo 2/D1.png", -719),
-        new BackgroundObject("../../img/3. Background/Layers/2. Floor/D1.png",-719),
-        new BackgroundObject("../../img/3. Background/Layers/5. Water/D2.png",0),
-        new BackgroundObject("../../img/3. Background/Legacy/Layers/4.Fondo 2/D2.png", 0),
-        new BackgroundObject("../../img/3. Background/Layers/2. Floor/D2.png",0),
-        new BackgroundObject("../../img/3. Background/Layers/5. Water/D1.png",719),
-        new BackgroundObject("../../img/3. Background/Legacy/Layers/4.Fondo 2/D1.png", 719),
-        new BackgroundObject("../../img/3. Background/Layers/2. Floor/D1.png",719),
-    ];
+    enemies = level1.enemies;
+    backgroundObjects = level1.backgroundObjects;
 
     cameraX = 0;
 
@@ -27,6 +10,7 @@ class World {
     keyboard;
 
     constructor(canvas, keyboard){
+        console.log(this);
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
@@ -45,6 +29,7 @@ class World {
     }
 
     addToMap(mo) {
+        console.log(mo);
         if (mo.otherDirection) {
             //turns around the image
             this.ctx.save();
@@ -62,9 +47,10 @@ class World {
 
         this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
 
-        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(level1.backgroundObjects);
+        console.log(this.character);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(level1.enemies);
 
         let self = this;
         requestAnimationFrame(function(){
