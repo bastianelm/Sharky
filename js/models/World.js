@@ -1,27 +1,11 @@
 class World {
+
+    
+    backgroundObjects = level1.backgroundObjects;
+    enemies = level1.enemies;
+
     character = new Character();
-
-    enemies = [
-        new PufferFish(),
-        new PufferFish(),
-        new PufferFish(),
-    ];
-
-
-    backgroundObjects = [
-        new BackgroundObject("../../img/3. Background/Layers/5. Water/D1.png",-719),
-        new BackgroundObject("../../img/3. Background/Legacy/Layers/4.Fondo 2/D1.png", -719),
-        new BackgroundObject("../../img/3. Background/Layers/2. Floor/D1.png",-719),
-        new BackgroundObject("../../img/3. Background/Layers/5. Water/D2.png",0),
-        new BackgroundObject("../../img/3. Background/Legacy/Layers/4.Fondo 2/D2.png", 0),
-        new BackgroundObject("../../img/3. Background/Layers/2. Floor/D2.png",0),
-        new BackgroundObject("../../img/3. Background/Layers/5. Water/D1.png",719),
-        new BackgroundObject("../../img/3. Background/Legacy/Layers/4.Fondo 2/D1.png", 719),
-        new BackgroundObject("../../img/3. Background/Layers/2. Floor/D1.png",719),
-    ];
-
     cameraX = 0;
-
     canvas;
     ctx;
     keyboard;
@@ -62,9 +46,9 @@ class World {
 
         this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
 
-        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(level1.enemies);
 
         let self = this;
         requestAnimationFrame(function(){
