@@ -7,5 +7,5 @@ class Level{
         this.enemies = enemies;
         this.backgroundObjects = backgroundObjects;
     }
-
+    
 }
