@@ -22,33 +22,40 @@ class Character extends MoveableObject {
     animate() {
         setInterval(() => {
             if (this.world && this.world.keyboard) {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    if(this.world.keyboard.RIGHT){
-                        this.otherDirection = false;
-                        this.x += this.speed;
-                    } else{
-                        this.otherDirection = true;
-                        this.x -= this.speed;                        
-                    }
-                    let i = this.currentImage % this.IMAGE_SWIMMING.length;
-                    let path = this.IMAGE_SWIMMING[i];
-                    if (this.imageCache[path]) {
-                        this.img = this.imageCache[path];
-                        this.currentImage++;
-                    }
-                    //sets camera position to opposite of character x
-                    this.world.ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transformations
-                    this.world.cameraX = -this.x;
-                    this.world.ctx.translate(this.world.cameraX, 0);
+                // Right Movement: Move right if not exceeding levelEndX
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
+                    this.otherDirection = false;
+                    this.x += this.speed;
+                } 
+    
+                // Left Movement: Move left only if x > 20
+                if (this.world.keyboard.LEFT && this.x > 20) {
+                    this.otherDirection = true;
+                    this.x -= this.speed;
                 }
-                if(this.world.keyboard.DOWN || this.world.keyboard.UP){
-                    if(this.world.keyboard.DOWN){
+    
+                // Animation handling
+                let i = this.currentImage % this.IMAGE_SWIMMING.length;
+                let path = this.IMAGE_SWIMMING[i];
+                if (this.imageCache[path]) {
+                    this.img = this.imageCache[path];
+                    this.currentImage++;
+                }
+    
+                // Set camera position to follow the character's x position
+                this.world.ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transformations
+                this.world.cameraX = -this.x;
+                this.world.ctx.translate(this.world.cameraX, 0);
+    
+                // Up and Down movement (if applicable)
+                if (this.world.keyboard.DOWN || this.world.keyboard.UP) {
+                    if (this.world.keyboard.DOWN) {
                         this.y += this.speed;
-                    } else{
-                        this.y -= this.speed;                        
+                    } else {
+                        this.y -= this.speed;
                     }
                 }
-            }    
+            }
         }, 100);
     }
     

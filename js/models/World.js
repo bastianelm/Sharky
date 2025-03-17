@@ -1,8 +1,8 @@
 class World {
 
-    
-    backgroundObjects = level1.backgroundObjects;
-    enemies = level1.enemies;
+    level = level1;
+    backgroundObjects = this.level.backgroundObjects;
+    enemies = this.level.enemies;
 
     character = new Character();
     cameraX = 0;
@@ -48,7 +48,7 @@ class World {
 
         this.addObjectsToMap(backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectsToMap(level1.enemies);
+        this.addObjectsToMap(this.level.enemies);
 
         let self = this;
         requestAnimationFrame(function(){
