@@ -40,18 +40,23 @@ class MoveableObject{
     */
    playAnimation(images){
                     // Animation image handling
-                    let i = this.currentImage % this.IMAGE_SWIMMING.length;
+                    let i = this.currentImage % images.length;
                     let path = images[i];
                     this.img = this.imageCache[path];
                     this.currentImage++;
-                    console.log(this.currentImage);
    }
 
-   animate() {
+   animate(animationEnd) {
         this.moveLeft();
-        setInterval(() => {
+        let interval = setInterval(() => {
             this.playAnimation(this.IMAGE_SWIMMING);
         }, 150);
+        if(animationEnd && typeof animationEnd === 'number'){
+            let timepassed = new Date().getTime() - animationEnd;
+            timepassed = timepassed / 1000;
+            console.log(timepassed);
+            clearInterval(interval);
+        }
     }
     moveLeft(){
         setInterval(()=>{
