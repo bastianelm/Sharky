@@ -1,4 +1,9 @@
 class Endboss extends MoveableObject{
+
+    width = 300;
+    height = 300;
+
+
     IMAGE_SWIMMING = [
         '../../img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
         '../../img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
@@ -15,5 +20,7 @@ class Endboss extends MoveableObject{
         super().loadImage(this.IMAGE_SWIMMING[0]);
         this.loadImages(this.IMAGE_SWIMMING);
         this.animate();
+        this.x = 900;
+        this.y = 0;
     }
 }

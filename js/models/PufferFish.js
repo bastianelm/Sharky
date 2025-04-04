@@ -1,7 +1,4 @@
 class PufferFish extends MoveableObject{
-    y = 350;
-    height = 60;
-    width = 86;
     speed = 2 + Math.random() * 3; // Minimum 3, Maximum 5
 
     IMAGE_SWIMMING = [
