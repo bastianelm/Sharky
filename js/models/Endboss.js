@@ -2,7 +2,7 @@ class Endboss extends MoveableObject{
 
     width = 300;
     height = 300;
-    IMAGE_INTRODUCE = [
+    IMAGE_SWIMMING = [
         '../../img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
         '../../img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
         '../../img/2.Enemy/3 Final Enemy/1.Introduce/3.png',
@@ -13,8 +13,6 @@ class Endboss extends MoveableObject{
         '../../img/2.Enemy/3 Final Enemy/1.Introduce/8.png',
         '../../img/2.Enemy/3 Final Enemy/1.Introduce/9.png',
         '../../img/2.Enemy/3 Final Enemy/1.Introduce/10.png',
-    ]
-    IMAGE_SWIMMING = [
         '../../img/2.Enemy/3 Final Enemy/2.floating/1.png',
         '../../img/2.Enemy/3 Final Enemy/2.floating/2.png',
         '../../img/2.Enemy/3 Final Enemy/2.floating/3.png',
