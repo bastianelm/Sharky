@@ -46,4 +46,16 @@ class MoveableObject{
                     this.currentImage++;
                     console.log(this.currentImage);
    }
+
+   animate() {
+        this.moveLeft();
+        setInterval(() => {
+            this.playAnimation(this.IMAGE_SWIMMING);
+        }, 150);
+    }
+    moveLeft(){
+        setInterval(()=>{
+            this.x -= this.speed;
+        }, 1000 / 60)
+    }
 }
