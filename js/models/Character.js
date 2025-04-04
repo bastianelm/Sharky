@@ -17,6 +17,7 @@ class Character extends MoveableObject {
     constructor() {
         super().loadImage('../../img/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGE_SWIMMING);
+        this.playAnimation(this.IMAGE_SWIMMING);
         this.animate();
     }
     animate() {
@@ -33,14 +34,8 @@ class Character extends MoveableObject {
                     this.otherDirection = true;
                     this.x -= this.speed;
                 }
-    
-                // Animation handling
-                let i = this.currentImage % this.IMAGE_SWIMMING.length;
-                let path = this.IMAGE_SWIMMING[i];
-                if (this.imageCache[path]) {
-                    this.img = this.imageCache[path];
-                    this.currentImage++;
-                }
+
+                this.playAnimation(this.IMAGE_SWIMMING);
     
                 // Set camera position to follow the character's x position
                 this.world.ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transformations

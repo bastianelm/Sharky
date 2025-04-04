@@ -31,11 +31,19 @@ class MoveableObject{
             this.imageCache[path] = img;
         });
     }
-
+    /*
     moveLeft(){
         setInterval(()=>{
             this.x -= this.speed;
         }, 100)        
     }
-
+    */
+   playAnimation(images){
+                    // Animation image handling
+                    let i = this.currentImage % this.IMAGE_SWIMMING.length;
+                    let path = images[i];
+                    this.img = this.imageCache[path];
+                    this.currentImage++;
+                    console.log(this.currentImage);
+   }
 }

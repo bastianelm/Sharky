@@ -24,13 +24,9 @@ class PufferFish extends MoveableObject{
     animate() {
         this.moveLeft();
         setInterval(() => {
-            let i = this.currentImage % this.IMAGE_SWIMMING.length;
-            let path = this.IMAGE_SWIMMING[i]; // Use the correct index
-            this.img = this.imageCache[path]; // Update the current image
-            this.currentImage++;
+            this.playAnimation(this.IMAGE_SWIMMING);
         }, 150);
     }
-
     moveLeft(){
         setInterval(()=>{
             this.x -= this.speed;
