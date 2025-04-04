@@ -1,5 +1,6 @@
 class World {
 
+    firstContact = false;
     level = level1;
     backgroundObjects = this.level.backgroundObjects;
     enemies = this.level.enemies;
