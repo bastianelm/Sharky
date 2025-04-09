@@ -32,8 +32,9 @@ class Endboss extends MoveableObject{
     constructor(){
         super().loadImage(this.IMAGE_INTRODUCE[0]);
         this.loadImages(this.IMAGE_INTRODUCE);
-        this.animate(this.IMAGE_INTRODUCE);
+        this.loadImages(this.IMAGE_SWIMMING);
         this.x = 300;
         this.y = 0;
+        this.animate();
     }
 }

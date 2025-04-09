@@ -8,6 +8,7 @@ class MoveableObject{
     currentImage = 0;
     speed = 0.15;
     otherDirection = false;
+    animationIteration = 0;
 
     /**
      * Loads a single image and sets it as the current image.
@@ -46,10 +47,21 @@ class MoveableObject{
                     this.currentImage++;
    }
 
-   animate(images) {
-        this.moveLeft();
+   animate() {
         setInterval(() => {
-            this.playAnimation(images);
+            if(this.constructor.name === 'Endboss'){
+                this.animationIteration++;
+                if(this.IMAGE_INTRODUCE.length -1 >= this.animationIteration){
+                    this.playAnimation(this.IMAGE_INTRODUCE);
+                }
+                else{
+                    this.playAnimation(this.IMAGE_SWIMMING);
+                    this.moveLeft();
+                }
+            } else{
+                this.playAnimation(this.IMAGE_SWIMMING);
+                this.moveLeft();
+            }
         }, 150);
     }
     moveLeft(){

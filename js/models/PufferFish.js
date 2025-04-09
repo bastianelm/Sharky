@@ -1,6 +1,5 @@
 class PufferFish extends MoveableObject{
-    speed = 2 + Math.random() * 3; // Minimum 3, Maximum 5
-
+    speed = Math.floor(Math.random() * (0.25 - 0.15 + 1)) + 0.15;
     IMAGE_SWIMMING = [
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim2.png',
