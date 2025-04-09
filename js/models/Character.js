@@ -5,17 +5,17 @@ class Character extends MoveableObject {
     x = 20;
     speed = 10;
     IMAGE_SWIMMING = [
-        '../../img/1.Sharkie/3.Swim/1.png',
-        '../../img/1.Sharkie/3.Swim/2.png',
-        '../../img/1.Sharkie/3.Swim/3.png',
-        '../../img/1.Sharkie/3.Swim/4.png',
-        '../../img/1.Sharkie/3.Swim/5.png',
-        '../../img/1.Sharkie/3.Swim/6.png',
+        'img/1.Sharkie/3.Swim/1.png',
+        'img/1.Sharkie/3.Swim/2.png',
+        'img/1.Sharkie/3.Swim/3.png',
+        'img/1.Sharkie/3.Swim/4.png',
+        'img/1.Sharkie/3.Swim/5.png',
+        'img/1.Sharkie/3.Swim/6.png',
     ];
     world;
 
     constructor() {
-        super().loadImage('../../img/1.Sharkie/3.Swim/1.png');
+        super().loadImage('img/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGE_SWIMMING);
         this.playAnimation(this.IMAGE_SWIMMING);
         this.animate();
