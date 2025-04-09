@@ -15,7 +15,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.draw();
+        this.drawWorld();
         this.setWorld();
     }
     
@@ -50,7 +50,7 @@ class World {
         }
     }
 
-    draw(){
+    drawWorld(){
 
         this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
 
@@ -60,7 +60,7 @@ class World {
 
         let self = this;
         requestAnimationFrame(function(){
-            self.draw();
+            self.drawWorld();
         });
     }
 
