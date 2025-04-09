@@ -29,17 +29,24 @@ class World {
         });
     }
 
-    addToMap(mo) {
-        if (mo.otherDirection) {
+    addToMap(object) {
+        if (object.otherDirection) {
             //turns around the image
             this.ctx.save();
-            this.ctx.translate(mo.x + mo.width / 2, mo.y + mo.height / 2);
+            this.ctx.translate(object.x + object.width / 2, object.y + object.height / 2);
             this.ctx.scale(-1, 1);
-            this.ctx.drawImage(mo.img, -mo.width / 2, -mo.height / 2, mo.width, mo.height);
+            this.ctx.drawImage(object.img, -object.width / 2, -object.height / 2, object.width, object.height);
             this.ctx.restore();
         } else {
             //normal drawing
-            this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+            this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+            if(object instanceof BackgroundObject === false){
+                this.ctx.beginPath();
+                this.ctx.lineWidth = "6";
+                this.ctx.strokeStyle = "red";
+                this.ctx.rect(object.x, object.y, object.width, object.height);
+                this.ctx.stroke();
+            }
         }
     }
 
