@@ -53,6 +53,13 @@ class MoveableObject{
         ctx.stroke();
     }
 
+    isColliding(enemy) {
+        return (this.x < enemy.x + enemy.width &&
+                this.x + this.width > enemy.x &&
+                this.y < enemy.y + enemy.height &&
+                this.y + this.height > enemy.y);
+    }
+
    playAnimation(images){
                     // Animation image handling
                     let i = this.currentImage % images.length;
