@@ -32,20 +32,12 @@ class World {
     addToMap(object) {
         if (object.otherDirection) {
             //turns around the image
-            this.ctx.save();
-            this.ctx.translate(object.x + object.width / 2, object.y + object.height / 2);
-            this.ctx.scale(-1, 1);
-            this.ctx.drawImage(object.img, -object.width / 2, -object.height / 2, object.width, object.height);
-            this.ctx.restore();
+            object.renderFlippedImage(this.ctx);
         } else {
             //normal drawing
-            this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+            object.renderImage(this.ctx);
             if(object instanceof BackgroundObject === false){
-                this.ctx.beginPath();
-                this.ctx.lineWidth = "6";
-                this.ctx.strokeStyle = "red";
-                this.ctx.rect(object.x, object.y, object.width, object.height);
-                this.ctx.stroke();
+                object.renderHitBox(this.ctx);
             }
         }
     }

@@ -32,13 +32,27 @@ class MoveableObject{
             this.imageCache[path] = img;
         });
     }
-    /*
-    moveLeft(){
-        setInterval(()=>{
-            this.x -= this.speed;
-        }, 100)        
+
+    renderFlippedImage(ctx){
+        ctx.save();
+        ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+        ctx.scale(-1, 1);
+        ctx.drawImage(this.img, -this.width / 2, -this.height / 2, this.width, this.height);
+        ctx.restore();
     }
-    */
+
+    renderImage(ctx){
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    renderHitBox(ctx){
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.strokeStyle = "red";
+        ctx.rect(this.x, this.y, this.width, this.height);
+        ctx.stroke();
+    }
+
    playAnimation(images){
                     // Animation image handling
                     let i = this.currentImage % images.length;
