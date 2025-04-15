@@ -10,6 +10,7 @@ class MoveableObject{
     otherDirection = false;
     animationIteration = 0;
     lives = 10;
+    isHurt = false;
 
     /**
      * Loads a single image and sets it as the current image.
