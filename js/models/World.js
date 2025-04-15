@@ -44,12 +44,11 @@ class World {
     }
 
     checkCollisions(){
-        console.log("check läuft");
         setInterval(()=>{
-                console.log("interval läuft");
                 this.level.enemies.forEach(enemy => {
                     if (this.character.isColliding(enemy)) {
-                        console.log(enemy.constructor.name + " kollidiert mit");
+                        this.character.lives--;
+                        console.log(this.character.lives);
                     }
                 });                
         }, 1000/60)
