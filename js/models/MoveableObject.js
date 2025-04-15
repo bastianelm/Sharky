@@ -91,8 +91,3 @@ class MoveableObject{
         }, 1000 / 60)
     }
 }
-
-//var first contact (bool) wird auf true wenn der abstand so und so ist
-//zähler der zählt wie oft..
-    //dann spiele startanimation ab aber nur einmal
-// dann animation ab
