@@ -2,8 +2,8 @@ class MoveableObject{
     x = 120;
     y = 200;
     img;
-    height = 56;
-    width = 56;
+    height = 37;
+    width = 37;
     imageCache = {}; // Cache for multiple images
     currentImage = 0;
     speed = 0.15;

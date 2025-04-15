@@ -1,6 +1,6 @@
 class Character extends MoveableObject {
-    height = 250;
-    width = 250;
+    height = 90;
+    width = 120;
     y = 50;
     x = 20;
     speed = 10;
