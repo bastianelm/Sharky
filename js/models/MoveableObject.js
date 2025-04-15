@@ -76,6 +76,11 @@ class MoveableObject{
         return touchingLeft || touchingRight || touchingTop || touchingBottom;
     }
 
+    hit(){
+        this.lives -= 1;
+        console.log(this.lives);
+    }
+
    playAnimation(images){
                     // Animation image handling
                     let i = this.currentImage % images.length;
