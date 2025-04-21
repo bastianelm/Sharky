@@ -13,7 +13,7 @@ class Endboss extends MoveableObject{
         'img/2.Enemy/3 Final Enemy/1.Introduce/8.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/9.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/10.png',
-    ]
+    ];
     IMAGE_SWIMMING = [
         'img/2.Enemy/3 Final Enemy/2.floating/1.png',
         'img/2.Enemy/3 Final Enemy/2.floating/2.png',
@@ -29,6 +29,10 @@ class Endboss extends MoveableObject{
         'img/2.Enemy/3 Final Enemy/2.floating/12.png',
         'img/2.Enemy/3 Final Enemy/2.floating/13.png',
     ];
+    IMAGE_DEATH = [
+        'img/2.Enemy/3 Final Enemy/Dead/dead1.png',
+        'img/2.Enemy/3 Final Enemy/Dead/dead2.png'
+    ]  
     constructor(){
         super().loadImage(this.IMAGE_INTRODUCE[0]);
         this.loadImages(this.IMAGE_INTRODUCE);

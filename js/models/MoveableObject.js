@@ -11,6 +11,7 @@ class MoveableObject{
     animationIteration = 0;
     lives = 10;
     isHurt = false;
+    isDead = false;
 
     /**
      * Loads a single image and sets it as the current image.
@@ -78,8 +79,7 @@ class MoveableObject{
     }
 
     hit(){
-        this.lives -= 1;
-        console.log(this.lives);
+        this.lives > 0 ? this.lives-- : this.isDead = true;
     }
 
    playAnimation(images){
@@ -102,8 +102,12 @@ class MoveableObject{
                     this.moveLeft();
                 }
             } else{
-                this.playAnimation(this.IMAGE_SWIMMING);
-                this.moveLeft();
+                if(this.isDead){
+                    this.playAnimation(this.IMAGE_DEATH);
+                } else{
+                    this.playAnimation(this.IMAGE_SWIMMING);
+                    this.moveLeft();
+                }
             }
         }, 150);
     }
