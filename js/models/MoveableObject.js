@@ -57,25 +57,13 @@ class MoveableObject{
     }
 
     isColliding(enemy) {
-        const tolerance = 1; // Erlaubt kleine Ungenauigkeiten
-    
-        const touchingLeft = Math.abs(this.x + this.width - enemy.x) <= tolerance &&
-                             this.y < enemy.y + enemy.height &&
-                             this.y + this.height > enemy.y;
-    
-        const touchingRight = Math.abs(this.x - (enemy.x + enemy.width)) <= tolerance &&
-                              this.y < enemy.y + enemy.height &&
-                              this.y + this.height > enemy.y;
-    
-        const touchingTop = Math.abs(this.y + this.height - enemy.y) <= tolerance &&
-                            this.x < enemy.x + enemy.width &&
-                            this.x + this.width > enemy.x;
-    
-        const touchingBottom = Math.abs(this.y - (enemy.y + enemy.height)) <= tolerance &&
-                               this.x < enemy.x + enemy.width &&
-                               this.x + this.width > enemy.x;
-    
-        return touchingLeft || touchingRight || touchingTop || touchingBottom;
+        console.log(
+            this.x + this.width > enemy.x &&
+            this.y + this.height > enemy.y &&
+            this.x < enemy.x + enemy.width &&
+            this.y < enemy.y + enemy.height
+        );
+        return this.x + this.width > enemy.x && this.y + this.height > enemy.y && this.x < enemy.x + enemy.width && this.y < enemy.y + enemy.height;
     }
 
     hit(){
