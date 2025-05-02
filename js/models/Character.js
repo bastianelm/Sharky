@@ -28,16 +28,17 @@ class Character extends MoveableObject {
         this.playAnimation(this.IMAGE_SWIMMING);
         this.animate();
     }
+
     animate() {
         setInterval(() => {
             if (this.world && this.world.keyboard) {
-                // Bewegung rechts mit Level-Grenze
+                // Bewegung nach rechts, nur wenn noch nicht am Level-Ende
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                     this.otherDirection = false;
                     this.x += this.speed;
                 }
     
-                // Bewegung links mit Grenze
+                // Bewegung nach links, nur wenn nicht unter Minimum
                 if (this.world.keyboard.LEFT && this.x > 20) {
                     this.otherDirection = true;
                     this.x -= this.speed;
@@ -50,13 +51,21 @@ class Character extends MoveableObject {
                     this.y -= this.speed;
                 }
     
-                // Kamera folgt dem Charakter (aber nur Wert setzen!)
-                this.world.cameraX = -this.x + 100;
+                // Kamera-Logik
+                const scrollBorder = this.world.canvas.width / 3; // wie weit links der Char max. stehen darf
+                const desiredCameraX = -this.x + scrollBorder;
+    
+                const maxCameraX = 0; // Kamera darf nicht weiter rechts scrollen
+                const minCameraX = -this.world.level.levelEndX + this.world.canvas.width; // nicht über Levelende hinaus
+    
+                // Begrenzte Kamera
+                this.world.cameraX = Math.max(minCameraX, Math.min(maxCameraX, desiredCameraX));
     
                 this.playAnimation(this.IMAGE_SWIMMING);
             }
         }, 100);
     }
+    
     
     
 }
