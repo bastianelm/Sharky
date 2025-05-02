@@ -54,18 +54,21 @@ class World {
         }, 1000/60)
     }
 
-    drawWorld(){
-
-        this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
-
+    drawWorld() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+        this.ctx.save(); // aktuellen Zeichenkontext speichern
+        
+        this.ctx.translate(this.cameraX, 0); // Kamera anwenden
+    
         this.addObjectsToMap(backgroundObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
-
-        let self = this;
-        requestAnimationFrame(function(){
-            self.drawWorld();
-        });
+    
+        this.ctx.restore(); // Zeichenkontext wiederherstellen
+    
+        requestAnimationFrame(() => this.drawWorld());
     }
+    
 
 }

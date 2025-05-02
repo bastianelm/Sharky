@@ -31,35 +31,32 @@ class Character extends MoveableObject {
     animate() {
         setInterval(() => {
             if (this.world && this.world.keyboard) {
-                // Right Movement: Move right if not exceeding levelEndX
+                // Bewegung rechts mit Level-Grenze
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                     this.otherDirection = false;
                     this.x += this.speed;
-                } 
+                }
     
-                // Left Movement: Move left only if x > 20
+                // Bewegung links mit Grenze
                 if (this.world.keyboard.LEFT && this.x > 20) {
                     this.otherDirection = true;
                     this.x -= this.speed;
                 }
-
-                this.playAnimation(this.IMAGE_SWIMMING);
     
-                // Set camera position to follow the character's x position
-                this.world.ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transformations
-                this.world.cameraX = -this.x;
-                this.world.ctx.translate(this.world.cameraX, 0);
-    
-                // Up and Down movement (if applicable)
-                if (this.world.keyboard.DOWN || this.world.keyboard.UP) {
-                    if (this.world.keyboard.DOWN) {
-                        this.y += this.speed;
-                    } else {
-                        this.y -= this.speed;
-                    }
+                // Vertikale Bewegung
+                if (this.world.keyboard.DOWN) {
+                    this.y += this.speed;
+                } else if (this.world.keyboard.UP) {
+                    this.y -= this.speed;
                 }
+    
+                // Kamera folgt dem Charakter (aber nur Wert setzen!)
+                this.world.cameraX = -this.x + 100;
+    
+                this.playAnimation(this.IMAGE_SWIMMING);
             }
         }, 100);
     }
+    
     
 }
