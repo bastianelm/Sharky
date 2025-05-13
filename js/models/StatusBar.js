@@ -1,4 +1,3 @@
-alert("asdfsss");
 class StatusBar extends DrawableObject{
     IMAGES = [
         'img/4. Marcadores/green/Life/0_ copia 3.png',

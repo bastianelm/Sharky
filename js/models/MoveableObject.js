@@ -29,12 +29,6 @@ class MoveableObject extends DrawableObject{
     }
 
     isColliding(enemy) {
-        console.log(
-            this.x + this.width > enemy.x &&
-            this.y + this.height > enemy.y &&
-            this.x < enemy.x + enemy.width &&
-            this.y < enemy.y + enemy.height
-        );
         return this.x + this.width > enemy.x && this.y + this.height > enemy.y && this.x < enemy.x + enemy.width && this.y < enemy.y + enemy.height;
     }
 
@@ -62,7 +56,10 @@ class MoveableObject extends DrawableObject{
                     this.moveLeft();
                 }
             } else{
+                console.log(this.isDead);
+                console.log(this.lives);
                 if(this.isDead){
+                    console.log('dead character');
                     this.playAnimation(this.IMAGE_DEATH);
                 } else{
                     this.playAnimation(this.IMAGE_SWIMMING);
