@@ -44,6 +44,21 @@ class MoveableObject extends DrawableObject{
                     this.currentImage++;
    }
 
+    chooseAnimation(){
+        if(this.isDead){
+            this.playAnimation(this.IMAGE_DEATH);
+        } else{
+            this.playAnimation(this.IMAGE_SWIMMING);
+            if(this.constructor.name !== 'Character'){
+                this.moveLeft()
+            }
+        }
+    }
+    moveLeft(){
+        setInterval(()=>{
+            this.x -= this.speed;
+        }, 1000 / 60)
+    }
    animate() {
         setInterval(() => {
             if(this.constructor.name === 'Endboss'){
@@ -56,20 +71,8 @@ class MoveableObject extends DrawableObject{
                     this.moveLeft();
                 }
             } else{
-                console.log(this.isDead);
-                console.log(this.lives);
-                if(this.isDead){
-                    this.playAnimation(this.IMAGE_DEATH);
-                } else{
-                    this.playAnimation(this.IMAGE_SWIMMING);
-                    this.moveLeft();
-                }
+                this.chooseAnimation();
             }
         }, 150);
-    }
-    moveLeft(){
-        setInterval(()=>{
-            this.x -= this.speed;
-        }, 1000 / 60)
     }
 }

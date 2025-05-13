@@ -61,7 +61,7 @@ class Character extends MoveableObject {
                 // Begrenzte Kamera
                 this.world.cameraX = Math.max(minCameraX, Math.min(maxCameraX, desiredCameraX));
     
-                this.playAnimation(this.IMAGE_SWIMMING);
+                super.chooseAnimation();
             }
         }, 100);
     }
