@@ -59,7 +59,6 @@ class MoveableObject extends DrawableObject{
                 console.log(this.isDead);
                 console.log(this.lives);
                 if(this.isDead){
-                    console.log('dead character');
                     this.playAnimation(this.IMAGE_DEATH);
                 } else{
                     this.playAnimation(this.IMAGE_SWIMMING);
