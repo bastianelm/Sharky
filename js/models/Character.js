@@ -26,12 +26,25 @@ class Character extends MoveableObject {
         'img/1.Sharkie/6.dead/1.Poisoned/11.png',
         'img/1.Sharkie/6.dead/1.Poisoned/12.png',
     ];
+
+    IMAGE_ATTACK = [
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
+    ];
+
     world;
 
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGE_SWIMMING);
         this.loadImages(this.IMAGE_DEATH);
+        this.loadImages(this.IMAGE_ATTACK);
         this.playAnimation(this.IMAGE_SWIMMING);
         this.animate();
     }
@@ -57,6 +70,11 @@ class Character extends MoveableObject {
                 } else if (this.world.keyboard.UP) {
                     this.y -= this.speed;
                 }
+
+                if (this.world.keyboard.SPACE){
+                    this.attack = true;
+                }
+
     
                 // Kamera-Logik
                 const scrollBorder = this.world.canvas.width / 3; // wie weit links der Char max. stehen darf
