@@ -38,7 +38,7 @@ class World {
             //normal drawing
             object.renderImage(this.ctx);
             if(object instanceof BackgroundObject === false){
-                object.renderHitBox(this.ctx);
+                //object.renderHitBox(this.ctx);
             }
         }
     }

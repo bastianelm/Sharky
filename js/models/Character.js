@@ -25,20 +25,6 @@ class Character extends MoveableObject {
         'img/1.Sharkie/6.dead/1.Poisoned/10.png',
         'img/1.Sharkie/6.dead/1.Poisoned/11.png',
         'img/1.Sharkie/6.dead/1.Poisoned/12.png',
-        /*
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00000.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00001.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00002.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00003.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00004.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00005.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00006.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00007.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00008.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00009.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00010.png',
-        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00011.png',
-        */
     ];
     world;
 
