@@ -13,18 +13,25 @@ class Character extends MoveableObject {
         'img/1.Sharkie/3.Swim/6.png',
     ];
     IMAGE_DEATH = [
-        'img/1.Sharkie/3.Swim/1.png',
-        'img/1.Sharkie/3.Swim/2.png',
-        'img/1.Sharkie/3.Swim/3.png',
-        'img/1.Sharkie/3.Swim/4.png',
-        'img/1.Sharkie/3.Swim/5.png',
-        'img/1.Sharkie/3.Swim/6.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00000.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00001.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00002.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00003.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00004.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00005.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00006.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00007.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00008.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00009.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00010.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00011.png',
     ];
     world;
 
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGE_SWIMMING);
+        this.loadImages(this.IMAGE_DEATH);
         this.playAnimation(this.IMAGE_SWIMMING);
         this.animate();
     }
