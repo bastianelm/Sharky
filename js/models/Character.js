@@ -13,6 +13,19 @@ class Character extends MoveableObject {
         'img/1.Sharkie/3.Swim/6.png',
     ];
     IMAGE_DEATH = [
+        'img/1.Sharkie/6.dead/1.Poisoned/1.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/2.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/3.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/4.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/5.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/6.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/7.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/8.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/9.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/10.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/11.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/12.png',
+        /*
         'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00000.png',
         'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00001.png',
         'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00002.png',
@@ -25,6 +38,7 @@ class Character extends MoveableObject {
         'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00009.png',
         'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00010.png',
         'img/1.Sharkie/6.dead/1.Poisoned/sin subir/DES 2_00011.png',
+        */
     ];
     world;
 
