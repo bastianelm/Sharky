@@ -5,6 +5,7 @@ class MoveableObject extends DrawableObject{
     lives = 10;
     isHurt = false;
     isDead = false;
+    attack = false;
 
 
 
