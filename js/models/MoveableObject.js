@@ -46,7 +46,11 @@ class MoveableObject extends DrawableObject{
 
     chooseAnimation(){
         if(this.isDead){
+            console.log("tot");
             this.playAnimation(this.IMAGE_DEATH);
+            console.log(this.y);
+            this.y += this.speed;
+            console.log(this.y);
         } else{
             this.playAnimation(this.IMAGE_SWIMMING);
             if(this.constructor.name !== 'Character'){
