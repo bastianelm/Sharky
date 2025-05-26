@@ -28,6 +28,15 @@ class DrawableObject {
             });
         }
         renderImage(ctx){
-            ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+            /*
+            try {
+
+                ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+            } catch (error) {
+                console.log(error);
+                console.log(this.img);
+            }
+            */
+           ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         }
 }

@@ -10,6 +10,7 @@ class World {
     canvas;
     ctx;
     keyboard;
+    statusBar = new StatusBar();
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
@@ -48,6 +49,7 @@ class World {
                 this.level.enemies.forEach(enemy => {
                     if (this.character.isColliding(enemy)) {
                         this.character.hit();
+                        this.statusBar.setPercentage(this.character.lives/(1000/100));
                     }
                 });                
         }, 1000/60)
@@ -63,6 +65,7 @@ class World {
         this.addObjectsToMap(backgroundObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.statusBar);
     
         this.ctx.restore(); // Zeichenkontext wiederherstellen
     

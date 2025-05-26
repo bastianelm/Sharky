@@ -2,7 +2,7 @@ class MoveableObject extends DrawableObject{
     speed = 0.15;
     otherDirection = false;
     animationIteration = 0;
-    lives = 10;
+    lives = 1000;
     isHurt = false;
     isDead = false;
     attack = false;
@@ -34,7 +34,7 @@ class MoveableObject extends DrawableObject{
     }
 
     hit(){
-        this.lives > 0 ? this.lives-- : this.isDead = true;
+        this.lives > 0 ? this.lives -= 20 : this.isDead = true;
     }
 
    playAnimation(images){
