@@ -18,5 +18,5 @@ const level1 = new Level(
         new BackgroundObject("img/3. Background/Legacy/Layers/4.Fondo 2/D1.png", 719),
         new BackgroundObject("img/3. Background/Layers/2. Floor/D1.png",719),
     ],
-    1200,
+    955
 );

@@ -52,22 +52,25 @@ class Character extends MoveableObject {
     animate() {
         setInterval(() => {
             if (this.world && this.world.keyboard) {
-                // Bewegung nach rechts, nur wenn noch nicht am Level-Ende
-                if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
+                // right movement
+                if (this.world.keyboard.RIGHT && this.x + this.width + this.speed < this.world.level.levelEndX) {
                     this.otherDirection = false;
                     this.x += this.speed;
                 }
     
-                // Bewegung nach links, nur wenn nicht unter Minimum
-                if (this.world.keyboard.LEFT && this.x > 20) {
+                // left movement
+                if (this.world.keyboard.LEFT && this.x > 0) {
                     this.otherDirection = true;
                     this.x -= this.speed;
                 }
     
-                // Vertikale Bewegung
-                if (this.world.keyboard.DOWN) {
+                // down movment
+                if (this.world.keyboard.DOWN && this.y < world.canvas.height - this.height) {
                     this.y += this.speed;
-                } else if (this.world.keyboard.UP) {
+                }
+                
+                // up movement
+                if (this.world.keyboard.UP && this.y > 0) {
                     this.y -= this.speed;
                 }
 
