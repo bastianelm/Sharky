@@ -38,11 +38,11 @@ class MoveableObject extends DrawableObject{
     }
 
    playAnimation(images){
-                    // Animation image handling
-                    let i = this.currentImage % images.length;
-                    let path = images[i];
-                    this.img = this.imageCache[path];
-                    this.currentImage++;
+        // Animation image handling
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
    }
 
     chooseAnimation(){

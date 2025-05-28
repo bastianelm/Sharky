@@ -65,7 +65,7 @@ class Character extends MoveableObject {
                 }
     
                 // down movment
-                if (this.world.keyboard.DOWN && this.y < world.canvas.height - this.height) {
+                if (this.world.keyboard.DOWN && this.y < world.canvas.height - this.height -this.world.uiArea) {
                     this.y += this.speed;
                 }
                 

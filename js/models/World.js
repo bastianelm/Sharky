@@ -1,10 +1,8 @@
 class World {
-
     firstContact = false;
     level = level1;
     backgroundObjects = this.level.backgroundObjects;
     enemies = this.level.enemies;
-
     character = new Character();
     cameraX = 0;
     canvas;
@@ -19,6 +17,7 @@ class World {
         this.drawWorld();
         this.setWorld();
         this.checkCollisions();
+        this.uiArea = 50;
     }
     
     setWorld(){
