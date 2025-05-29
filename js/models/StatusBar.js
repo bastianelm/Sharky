@@ -40,6 +40,5 @@ class StatusBar extends DrawableObject{
         this.height = 71.1;
         this.y =  canvas.height - (this.height - 4);
         this.setPercentage(100);
-        console.log(this.height);
     }
 }
