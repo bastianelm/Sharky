@@ -37,7 +37,7 @@ class Character extends MoveableObject {
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
     ];
-
+    
     world;
 
     constructor() {
