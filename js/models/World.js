@@ -8,11 +8,11 @@ class World {
     canvas;
     ctx;
     keyboard;
-    statusBar = new StatusBar();
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.statusBar = new StatusBar(10);
         this.keyboard = keyboard;
         this.drawWorld();
         this.setWorld();
@@ -30,16 +30,16 @@ class World {
         });
     }
 
-    addToMap(object) {
+    addToMap(object){
+        if(object instanceof BackgroundObject === false){
+                //object.renderHitBox(this.ctx);
+        }
         if (object.otherDirection) {
             //turns around the image
             object.renderFlippedImage(this.ctx);
         } else {
             //normal drawing
             object.renderImage(this.ctx);
-            if(object instanceof BackgroundObject === false){
-                //object.renderHitBox(this.ctx);
-            }
         }
     }
 
