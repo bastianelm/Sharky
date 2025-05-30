@@ -1,5 +1,4 @@
 class StatusBar extends DrawableObject{
-    type;
     IMAGES = [
         'img/4. Marcadores/green/Life/0_  copia 3.png',
         'img/4. Marcadores/green/Life/20_ copia 4.png',
@@ -33,9 +32,8 @@ class StatusBar extends DrawableObject{
         }
 
     }
-    constructor(type, x){
+    constructor(x){
         super();
-        this.type = type;
         this.loadImages(this.IMAGES);
         this.x = x;
         this.width = 267.75;
