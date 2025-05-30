@@ -1,0 +1,2 @@
+class BubblesBar extends StatusBar{
+}

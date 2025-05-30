@@ -1,3 +1,2 @@
 class CoinsBar extends StatusBar{
-    
 }

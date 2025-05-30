@@ -12,7 +12,9 @@ class World {
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
-        this.statusBar = new StatusBar(10);
+        this.healthBar = new HealthBar(60);
+        this.coinsBar = new CoinsBar(this.healthBar.x + this.healthBar.width);
+        this.bubblesBar = new BubblesBar(this.healthBar.x + (this.healthBar.width * 2));
         this.keyboard = keyboard;
         this.drawWorld();
         this.setWorld();
@@ -48,7 +50,7 @@ class World {
                 this.level.enemies.forEach(enemy => {
                     if (this.character.isColliding(enemy)) {
                         this.character.hit();
-                        this.statusBar.setPercentage(this.character.lives/(1000/100));
+                        this.healthBar.setPercentage(this.character.lives/(1000/100));
                     }
                 });                
         }, 1000/60)
@@ -62,7 +64,9 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.ctx.restore(); // Zeichenkontext wiederherstellen
-        this.addToMap(this.statusBar);
+        this.addToMap(this.healthBar);
+        this.addToMap(this.coinsBar);
+        this.addToMap(this.bubblesBar);
         requestAnimationFrame(() => this.drawWorld());
     }
     
