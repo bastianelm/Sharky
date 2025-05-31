@@ -6,10 +6,7 @@ class MoveableObject extends DrawableObject{
     isHurt = false;
     isDead = false;
     attack = false;
-
-
-
-
+    deathLoop = 0;
 
     renderFlippedImage(ctx){
         ctx.save();
@@ -18,8 +15,6 @@ class MoveableObject extends DrawableObject{
         ctx.drawImage(this.img, -this.width / 2, -this.height / 2, this.width, this.height);
         ctx.restore();
     }
-
-
 
     renderHitBox(ctx){
         ctx.beginPath();
@@ -47,14 +42,17 @@ class MoveableObject extends DrawableObject{
 
     chooseAnimation(){
         if(this.isDead){
-            this.playAnimation(this.IMAGE_DEATH);
-            this.y += this.speed;
+            if(this.deathLoop <= this.IMAGE_DEATH.length-1){
+                this.playAnimation(this.IMAGE_DEATH);
+            }
+            this.y -= this.speed;
+            this.deathLoop++;
         }
         else if(this.attack){
             this.playAnimation(this.IMAGE_ATTACK);
         } else{
             this.playAnimation(this.IMAGE_SWIMMING);
-            if(this.constructor.name !== 'Character'){
+            if(this.instanceOf() !== 'Character'){
                 this.moveLeft()
             }
         }
