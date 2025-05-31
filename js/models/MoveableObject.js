@@ -1,12 +1,12 @@
 class MoveableObject extends DrawableObject{
     speed = 0.15;
     otherDirection = false;
-    animationIteration = 0;
+    introLoopIteration = 0;
     lives = 1000;
     isHurt = false;
     isDead = false;
     attack = false;
-    deathLoop = 0;
+    deathLoopIteration = 0;
 
     renderFlippedImage(ctx){
         ctx.save();
@@ -42,11 +42,11 @@ class MoveableObject extends DrawableObject{
 
     chooseAnimation(){
         if(this.isDead){
-            if(this.deathLoop <= this.IMAGE_DEATH.length-1){
+            if(this.deathLoopIteration <= this.IMAGE_DEATH.length-1){
                 this.playAnimation(this.IMAGE_DEATH);
             }
             this.y -= this.speed;
-            this.deathLoop++;
+            this.deathLoopIteration++;
         }
         else if(this.attack){
             this.playAnimation(this.IMAGE_ATTACK);
@@ -65,8 +65,8 @@ class MoveableObject extends DrawableObject{
    animate() {
         setInterval(() => {
             if(this.constructor.name === 'Endboss'){
-                this.animationIteration++;
-                if(this.IMAGE_INTRODUCE.length -1 >= this.animationIteration){
+                this.introLoopIteration++;
+                if(this.IMAGE_INTRODUCE.length -1 >= this.introLoopIteration){
                     this.playAnimation(this.IMAGE_INTRODUCE);
                 }
                 else{
