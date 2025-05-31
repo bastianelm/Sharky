@@ -51,7 +51,10 @@ class Character extends MoveableObject {
 
     animate() {
         setInterval(() => {
-            if (this.world && this.world.keyboard) {
+            if (this.world.keyboard) {
+                if(this.isDead){
+                    this.world.keyboard = false;
+                }
                 // right movement
                 if (this.world.keyboard.RIGHT && this.x + this.width + this.speed < this.world.level.levelEndX) {
                     this.otherDirection = false;
@@ -88,9 +91,8 @@ class Character extends MoveableObject {
     
                 // Begrenzte Kamera
                 this.world.cameraX = Math.max(minCameraX, Math.min(maxCameraX, desiredCameraX));
-    
-                super.chooseAnimation();
             }
+            super.chooseAnimation();
         }, 100);
     }
     

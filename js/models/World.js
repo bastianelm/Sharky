@@ -7,7 +7,7 @@ class World {
     cameraX = 0;
     canvas;
     ctx;
-    keyboard;
+    keybaord;
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');

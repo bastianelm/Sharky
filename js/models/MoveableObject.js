@@ -32,7 +32,7 @@ class MoveableObject extends DrawableObject{
         this.lives > 0 ? this.lives -= 20 : this.isDead = true;
     }
 
-   playAnimation(images){
+    playAnimation(images){
         // Animation image handling
         let i = this.currentImage % images.length;
         let path = images[i];
@@ -52,8 +52,8 @@ class MoveableObject extends DrawableObject{
             this.playAnimation(this.IMAGE_ATTACK);
         } else{
             this.playAnimation(this.IMAGE_SWIMMING);
-            if(this.instanceOf() !== 'Character'){
-                this.moveLeft()
+            if(this.constructor.name !== 'Character'){
+                this.moveLeft();
             }
         }
     }
