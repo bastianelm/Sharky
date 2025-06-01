@@ -18,5 +18,16 @@ const level1 = new Level(
         new BackgroundObject("img/3. Background/Legacy/Layers/4.Fondo 2/D1.png", 719),
         new BackgroundObject("img/3. Background/Layers/2. Floor/D1.png",719),
     ],
-    955
+    955,
+    coins = [
+        new Coin(200, 100),
+        new Coin(300, 100),
+        new Coin(350, 100),
+        new Coin(450, 300),
+        new Coin(500, 300),
+        new Coin(550, 200),
+        new Coin(600, 600),
+        new Coin(650, 700),
+        new Coin(700, 750),
+    ],
 );

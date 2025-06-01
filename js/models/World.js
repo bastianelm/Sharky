@@ -20,6 +20,7 @@ class World {
         this.setWorld();
         this.checkCollisions();
         this.uiArea = 50;
+        console.log(this.level);
     }
     
     setWorld(){
@@ -63,6 +64,7 @@ class World {
         this.addObjectsToMap(backgroundObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.coins);
         this.ctx.restore(); // Zeichenkontext wiederherstellen
         this.addToMap(this.healthBar);
         this.addToMap(this.coinsBar);
