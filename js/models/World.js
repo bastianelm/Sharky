@@ -49,11 +49,31 @@ class World {
     checkCollisions(){
         setInterval(()=>{
                 this.level.enemies.forEach(enemy => {
-                    if (this.character.isColliding(enemy)) {
+                    if(this.character.isColliding(enemy)){
                         this.character.hit();
                         this.healthBar.setPercentage(this.character.lives/(1000/100));
                     }
-                });                
+                });
+                this.level.coins.forEach(coin => {
+                    if(this.character.isColliding(coin)){
+                        this.character.coins++;
+                        this.coinsBar.setPercentage(this.character.coins/(9/100));
+                        let index = this.level.coins.indexOf(coin);
+                        if (index !== -1) {
+                            this.level.coins.splice(index, 1);
+                        }
+                    }
+                })
+                this.level.poisonBottles.forEach(bottle=>{
+                    if(this.character.isColliding(bottle)){
+                        this.character.poisonBottles++;
+                        this.bubblesBar.setPercentage(this.character.poisonBottles/(5/100));
+                        let index = this.level.poisonBottles.indexOf(bottle);
+                        if (index !== -1) {
+                            this.level.poisonBottles.splice(index, 1);
+                        }
+                    }
+                })
         }, 1000/60)
     }
 
@@ -65,6 +85,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.poisonBottles);
         this.ctx.restore(); // Zeichenkontext wiederherstellen
         this.addToMap(this.healthBar);
         this.addToMap(this.coinsBar);

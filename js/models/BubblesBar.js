@@ -8,5 +8,6 @@ class BubblesBar extends StatusBar {
             'img/4. Marcadores/green/poisoned bubbles/80_ copia 2.png',
             'img/4. Marcadores/green/poisoned bubbles/100_ copia 3.png',
         ]);
+        this.setPercentage(0);
     }
 }

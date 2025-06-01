@@ -4,6 +4,8 @@ class Character extends MoveableObject {
     y = 50;
     x = 20;
     speed = 10;
+    coins = 0;
+    poisonBottles = 0;
     IMAGE_SWIMMING = [
         'img/1.Sharkie/3.Swim/1.png',
         'img/1.Sharkie/3.Swim/2.png',
