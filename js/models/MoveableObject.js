@@ -7,6 +7,7 @@ class MoveableObject extends DrawableObject{
     isDead = false;
     attack = false;
     deathLoopIteration = 0;
+    attackLoopIteration = 0;
 
     renderFlippedImage(ctx){
         ctx.save();
@@ -49,7 +50,13 @@ class MoveableObject extends DrawableObject{
             this.deathLoopIteration++;
         }
         else if(this.attack){
-            this.playAnimation(this.IMAGE_ATTACK);
+            if(this.attackLoopIteration <= this.IMAGE_ATTACK.length-1){
+                this.playAnimation(this.IMAGE_ATTACK);
+                this.attackLoopIteration++;
+            } else{
+                this.attack = false;
+                this.attackLoopIteration = 0;
+            }
         } else{
             this.playAnimation(this.IMAGE_SWIMMING);
             if(this.constructor.name !== 'Character'){
