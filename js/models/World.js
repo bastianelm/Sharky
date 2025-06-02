@@ -20,7 +20,6 @@ class World {
         this.setWorld();
         this.checkCollisions();
         this.uiArea = 50;
-        console.log(this.level);
     }
     
     setWorld(){
@@ -90,6 +89,10 @@ class World {
         this.addToMap(this.healthBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bubblesBar);
+        if(this.character.bubble !== undefined){
+            this.addToMap(this.character.bubble);
+            this.character.bubble.x++;
+        }
         requestAnimationFrame(() => this.drawWorld());
     }
     

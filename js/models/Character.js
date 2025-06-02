@@ -79,10 +79,11 @@ class Character extends MoveableObject {
                     this.y -= this.speed;
                 }
 
-                if (this.world.keyboard.SPACE && this.poisonBottles > 0){
-                    console.log(this.poisonBottles > 0);
+                if (this.world.keyboard.SPACE && this.poisonBottles > 0 && !this.otherDirection){
                     this.attack = true;
                     this.poisonBottles--;
+                    this.bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
+                    this.world.addToMap(this.bubble);
                     this.world.bubblesBar.setPercentage(this.poisonBotles/100/4);
                 }
 
