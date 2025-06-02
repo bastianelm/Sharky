@@ -83,6 +83,7 @@ class Character extends MoveableObject {
                     console.log(this.poisonBottles > 0);
                     this.attack = true;
                     this.poisonBottles--;
+                    this.world.bubblesBar.setPercentage(this.poisonBotles/100/4);
                 }
 
     
