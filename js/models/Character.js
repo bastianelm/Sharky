@@ -79,8 +79,10 @@ class Character extends MoveableObject {
                     this.y -= this.speed;
                 }
 
-                if (this.world.keyboard.SPACE){
+                if (this.world.keyboard.SPACE && this.poisonBottles > 0){
+                    console.log(this.poisonBottles > 0);
                     this.attack = true;
+                    this.poisonBottles--;
                 }
 
     
