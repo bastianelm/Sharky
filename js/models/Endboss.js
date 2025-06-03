@@ -1,5 +1,5 @@
 class Endboss extends MoveableObject{
-
+    speed = 8.5;
     width = 200;
     height = 200;
     IMAGE_INTRODUCE = [

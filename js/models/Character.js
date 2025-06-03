@@ -60,23 +60,23 @@ class Character extends MoveableObject {
                 // right movement
                 if (this.world.keyboard.RIGHT && this.x + this.width + this.speed < this.world.level.levelEndX) {
                     this.otherDirection = false;
-                    this.x += this.speed;
+                    this.moveRight();
                 }
     
                 // left movement
                 if (this.world.keyboard.LEFT && this.x > 0) {
                     this.otherDirection = true;
-                    this.x -= this.speed;
+                    this.moveLeft();
                 }
     
                 // down movment
                 if (this.world.keyboard.DOWN && this.y < world.canvas.height - this.height -this.world.uiArea) {
-                    this.y += this.speed;
+                    this.moveDown();
                 }
                 
                 // up movement
                 if (this.world.keyboard.UP && this.y > 0) {
-                    this.y -= this.speed;
+                    this.moveUp();
                 }
 
                 if (this.world.keyboard.SPACE && this.poisonBottles > 0 && !this.otherDirection){
@@ -99,9 +99,9 @@ class Character extends MoveableObject {
                 this.world.cameraX = Math.max(minCameraX, Math.min(maxCameraX, desiredCameraX));
             }
             super.chooseAnimation();
-        }, 100);
+        },150)
+        
     }
-    
     
     
 }

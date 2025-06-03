@@ -1,5 +1,5 @@
 class MoveableObject extends DrawableObject{
-    speed = 0.15;
+    speed;
     otherDirection = false;
     introLoopIteration = 0;
     lives = 1000;
@@ -65,9 +65,16 @@ class MoveableObject extends DrawableObject{
         }
     }
     moveLeft(){
-        setInterval(()=>{
-            this.x -= this.speed;
-        }, 1000 / 60)
+        this.x -= this.speed;
+    }
+    moveRight(){
+        this.x += this.speed;
+    }
+    moveUp(){
+        this.y -= this.speed;
+    }
+    moveDown(){
+        this.y += this.speed;
     }
    animate() {
         setInterval(() => {
