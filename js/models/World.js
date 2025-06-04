@@ -77,7 +77,7 @@ class World {
                 this.level.poisonBottles.forEach(bottle=>{
                     if(this.character.isColliding(bottle)){
                         this.character.poisonBottles++;
-                        this.bubblesBar.setPercentage(this.character.poisonBottles/(5/100));
+                        this.bubblesBar.setPercentage(this.character.poisonBottles/(4/100));
                         let index = this.level.poisonBottles.indexOf(bottle);
                         if (index !== -1) {
                             this.level.poisonBottles.splice(index, 1);
