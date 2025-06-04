@@ -29,8 +29,13 @@ class MoveableObject extends DrawableObject{
         return this.x + this.width > object.x && this.y + this.height > object.y && this.x < object.x + object.width && this.y < object.y + object.height;
     }
 
-    hit(){
-        this.lives > 0 ? this.lives -= 20 : this.isDead = true;
+    hit(damage){
+        if(this.lives > 0){
+            this.lives -= damage;
+            if(this.lives <= 0){
+                this.isDead = true;
+            }
+        }
     }
 
     playAnimation(images){

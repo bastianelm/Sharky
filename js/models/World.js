@@ -47,9 +47,20 @@ class World {
 
     checkCollisions(){
         setInterval(()=>{
+                this.level.enemies.forEach(enemy=>{
+                    if(this.character.bubble !== undefined && this.character.bubble.isColliding(enemy)){
+                        enemy.hit(1000);
+                        try {
+                            this.character.bubble = undefined;
+                            console.log(enemy.isDead);
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+                })
                 this.level.enemies.forEach(enemy => {
-                    if(this.character.isColliding(enemy)){
-                        this.character.hit();
+                    if(this.character.isColliding(enemy) && !enemy.isDead){
+                        this.character.hit(20);
                         this.healthBar.setPercentage(this.character.lives/(1000/100));
                     }
                 });
