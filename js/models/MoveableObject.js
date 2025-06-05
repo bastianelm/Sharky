@@ -89,8 +89,7 @@ class MoveableObject extends DrawableObject{
                     this.playAnimation(this.IMAGE_INTRODUCE);
                 }
                 else{
-                    this.playAnimation(this.IMAGE_SWIMMING);
-                    this.moveLeft();
+                    this.chooseAnimation();
                 }
             } else{
                 this.chooseAnimation();
