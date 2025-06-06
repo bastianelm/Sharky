@@ -90,14 +90,17 @@ class World {
 
 
     drawWorld() {
-        console.log(this.cameraX);
-        //console.log(world.character.cameraX);
-        //this.cameraX = this.character.world.cameraX;
-        let enemyCreationInterval = 1.5;
+        let enemyCreationInterval = 2.5;
         let now = performance.now();
         if((now - this.lastEnemyCreation) / 1000 >= enemyCreationInterval){
-            let pufferFish = new PufferFish(this.cameraX *-1 + this.canvas.width);
-            this.level.enemies.push(pufferFish);
+            let randomNumber = Math.floor(Math.random() * 2) + 1;
+            let enemy;
+            if(randomNumber === 1){
+                enemy = new PufferFish(this.cameraX *-1 + this.canvas.width);
+            } else {
+                enemy = new JellyFish(this.cameraX *-1 + this.canvas.width);
+            }
+            this.level.enemies.push(enemy);
             this.lastEnemyCreation = now;
         }
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
