@@ -51,7 +51,7 @@ class World {
         setInterval(()=>{
                 this.level.enemies.forEach(enemy=>{
                     if(this.character.bubble !== undefined && this.character.bubble.isColliding(enemy)){
-                        enemy.hit(1000);
+                        enemy.hit(2000);
                         try {
                             this.character.bubble = undefined;
                             console.log(enemy.isDead);
