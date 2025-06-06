@@ -40,7 +40,7 @@ class Endboss extends MoveableObject{
         this.loadImages(this.IMAGE_INTRODUCE);
         this.loadImages(this.IMAGE_SWIMMING);
         this.loadImages(this.IMAGE_DEATH);
-        this.x = 830;
+        this.x = canvas.width - this.width;
         this.y = 0;
         this.animate();
     }

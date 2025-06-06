@@ -9,6 +9,7 @@ class World {
     keybaord;
     startTime = performance.now();
     lastEnemyCreation = this.startTime;
+    endbossSpawned = false;
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
@@ -90,18 +91,28 @@ class World {
 
 
     drawWorld() {
-        let enemyCreationInterval = 2.5;
-        let now = performance.now();
-        if((now - this.lastEnemyCreation) / 1000 >= enemyCreationInterval){
-            let randomNumber = Math.floor(Math.random() * 2) + 1;
-            let enemy;
-            if(randomNumber === 1){
-                enemy = new PufferFish(this.cameraX *-1 + this.canvas.width);
-            } else {
-                enemy = new JellyFish(this.cameraX *-1 + this.canvas.width);
+        if(this.coinsBar.percentage !== 100){
+            let enemyCreationInterval = 2.5;
+            let now = performance.now();
+            if((now - this.lastEnemyCreation) / 1000 >= enemyCreationInterval){
+                let randomNumber = Math.floor(Math.random() * 2) + 1;
+                let enemy;
+                if(randomNumber === 1){
+                    enemy = new PufferFish(this.cameraX *-1 + this.canvas.width);
+                } else {
+                    enemy = new JellyFish(this.cameraX *-1 + this.canvas.width);
+                }
+                this.level.enemies.push(enemy);
+                this.lastEnemyCreation = now;
             }
-            this.level.enemies.push(enemy);
-            this.lastEnemyCreation = now;
+        } else{
+            if (!this.endbossSpawned) {
+                if(this.character.otherDirection === true) this.character.otherDirection = false;
+                this.character.x = 0;
+                this.level.enemies = [];
+                this.level.enemies.push(new Endboss());
+                this.endbossSpawned = true;
+            }
         }
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.save(); // aktuellen Zeichenkontext speichern
