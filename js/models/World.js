@@ -2,12 +2,13 @@ class World {
     firstContact = false;
     level = level1;
     backgroundObjects = this.level.backgroundObjects;
-    enemies = this.level.enemies;
     character = new Character();
     cameraX = 0;
     canvas;
     ctx;
     keybaord;
+    startTime = performance.now();
+    lastEnemyCreation = this.startTime;
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
@@ -87,7 +88,18 @@ class World {
         }, 1000/60)
     }
 
+
     drawWorld() {
+        console.log(this.cameraX);
+        //console.log(world.character.cameraX);
+        //this.cameraX = this.character.world.cameraX;
+        let enemyCreationInterval = 1.5;
+        let now = performance.now();
+        if((now - this.lastEnemyCreation) / 1000 >= enemyCreationInterval){
+            let pufferFish = new PufferFish(this.cameraX *-1 + this.canvas.width);
+            this.level.enemies.push(pufferFish);
+            this.lastEnemyCreation = now;
+        }
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.save(); // aktuellen Zeichenkontext speichern
         this.ctx.translate(this.cameraX, 0); // Kamera anwenden

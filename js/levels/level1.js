@@ -1,9 +1,5 @@
 const level1 = new Level(
     enemies = [
-        new PufferFish(),
-        new PufferFish(),
-        new PufferFish(),
-        new Endboss(),
     ],
     backgroundObjects = [
         /*
