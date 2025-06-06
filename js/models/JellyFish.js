@@ -14,7 +14,8 @@ class JellyFish extends MoveableObject{
     ]
 
     constructor(x){
-        super().loadImage('img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
+        super();
+        this.loadImage('img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
         this.loadImages(this.IMAGE_SWIMMING);
         this.loadImages(this.IMAGE_DEATH);
         this.x = x - this.width;

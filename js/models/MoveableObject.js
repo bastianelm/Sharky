@@ -82,7 +82,6 @@ class MoveableObject extends DrawableObject{
         this.y += this.speed;
     }
    animate() {
-        setInterval(() => {
             if(this.constructor.name === 'Endboss'){
                 this.introLoopIteration++;
                 if(this.IMAGE_INTRODUCE.length -1 >= this.introLoopIteration){
@@ -94,6 +93,9 @@ class MoveableObject extends DrawableObject{
             } else{
                 this.chooseAnimation();
             }
-        }, 150);
+    }
+    constructor(){
+        super();
+        window.setStoppableInterval(() => this.animate(), 150);
     }
 }

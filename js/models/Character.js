@@ -48,11 +48,10 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGE_DEATH);
         this.loadImages(this.IMAGE_ATTACK);
         this.playAnimation(this.IMAGE_SWIMMING);
-        this.animate();
+        window.setStoppableInterval(this.animate.bind(this), 150);
     }
 
     animate() {
-        setInterval(() => {
             if (this.world.keyboard) {
                 if(this.isDead){
                     this.world.keyboard = false;
@@ -79,12 +78,12 @@ class Character extends MoveableObject {
                     this.moveUp();
                 }
 
-                if (this.world.keyboard.SPACE && this.poisonBottles > 0 && !this.otherDirection){
+                if (this.world.keyboard.SPACE && this.poisonBottlles > 0 && !this.otherDirection){
                     this.attack = true;
                     this.poisonBottles--;
                     this.bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
                     this.world.addToMap(this.bubble);
-                    this.world.bubblesBar.setPercentage(this.poisonBotles/100/4);
+                    this.world.bubblesBar.setPercentage(this.poisonBottles/100/4);
                 }
 
     
@@ -99,7 +98,6 @@ class Character extends MoveableObject {
                 this.world.cameraX = Math.max(minCameraX, Math.min(maxCameraX, desiredCameraX));
             }
             super.chooseAnimation();
-        },150)
         
     }
     

@@ -28,4 +28,12 @@
 <body onload="init()">
     <canvas id="canvas" width="720" height="530"></canvas>
 </body>
+<script>
+        window.intervalIds = [];
+        window.setStoppableInterval = (fn, time)=>{
+            let id = setInterval(fn, time);
+            intervalIds.push(id);
+        }
+        window.stopGame = ()=>{intervalIds.forEach(clearInterval)};
+</script>
 </html>

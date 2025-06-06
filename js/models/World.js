@@ -48,16 +48,10 @@ class World {
     }
 
     checkCollisions(){
-        setInterval(()=>{
                 this.level.enemies.forEach(enemy=>{
-                    if(this.character.bubble !== undefined && this.character.bubble.isColliding(enemy)){
+                    if(this.character.bubble !== undefined && enemy.isColliding(this.character.bubble )){
                         enemy.hit(2000);
-                        try {
-                            this.character.bubble = undefined;
-                            console.log(enemy.isDead);
-                        } catch (error) {
-                            console.log(error);
-                        }
+                        this.character.bubble = undefined;
                     }
                 })
                 this.level.enemies.forEach(enemy => {
@@ -86,7 +80,6 @@ class World {
                         }
                     }
                 })
-        }, 1000/60)
     }
 
 
@@ -128,8 +121,9 @@ class World {
         this.addToMap(this.bubblesBar);
         if(this.character.bubble !== undefined){
             this.addToMap(this.character.bubble);
-            this.character.bubble.x++;
+            this.character.bubble.x += 10;
         }
+        this.checkCollisions();
         requestAnimationFrame(() => this.drawWorld());
     }
     

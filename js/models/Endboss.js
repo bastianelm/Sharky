@@ -36,12 +36,13 @@ class Endboss extends MoveableObject{
         'img/2.Enemy/3 Final Enemy/Dead/dead2.png'
     ]  
     constructor(){
-        super().loadImage(this.IMAGE_INTRODUCE[0]);
+        super();
+        this.loadImage(this.IMAGE_INTRODUCE[0]);
         this.loadImages(this.IMAGE_INTRODUCE);
         this.loadImages(this.IMAGE_SWIMMING);
         this.loadImages(this.IMAGE_DEATH);
         this.x = canvas.width - this.width;
         this.y = 0;
-        this.animate();
+        window.setStoppableInterval((this.animate(),150));
     }
 }

@@ -1,4 +1,4 @@
-class Bubble extends MoveableObject {
+class Bubble extends DrawableObject {
     constructor(x, y){
         super();
         this.x = x;
