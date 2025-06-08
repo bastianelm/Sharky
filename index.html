@@ -32,8 +32,10 @@
         window.intervalIds = [];
         window.setStoppableInterval = (fn, time)=>{
             let id = setInterval(fn, time);
-            intervalIds.push(id);
+            window.intervalIds.push(id);
         }
-        window.stopGame = ()=>{intervalIds.forEach(clearInterval)};
+        window.stopGame = ()=>{
+            window.intervalIds.forEach(clearInterval)
+        };
 </script>
 </html>

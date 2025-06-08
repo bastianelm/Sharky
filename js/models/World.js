@@ -84,10 +84,13 @@ class World {
 
 
     drawWorld() {
-        let gameEnd1 = this.endbossSpawned === true && this.level.enemies[0].isDead === true;
-        let gameEnd2 = this.character.isDead === true;
+        let gameEnd1 = this.endbossSpawned === true && this.level.enemies[0].isDead === true && this.level.enemies[0].y === 0;
+        let gameEnd2 = this.character.isDead === true && this.character.y <= 0;
         let gameOver = gameEnd1 || gameEnd2;
         if(gameOver){
+            window.stopGame();
+            window.intervalIds = [];
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             return;
         }
         if(this.coinsBar.percentage !== 100){
