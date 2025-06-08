@@ -78,7 +78,7 @@ class Character extends MoveableObject {
                     this.moveUp();
                 }
 
-                if (this.world.keyboard.SPACE && this.poisonBottlles > 0 && !this.otherDirection){
+                if (this.world.keyboard.SPACE && this.poisonBottles > 0 && !this.otherDirection){
                     this.attack = true;
                     this.poisonBottles--;
                     this.bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);

@@ -84,6 +84,12 @@ class World {
 
 
     drawWorld() {
+        let gameEnd1 = this.endbossSpawned === true && this.level.enemies[0].isDead === true;
+        let gameEnd2 = this.character.isDead === true;
+        let gameOver = gameEnd1 || gameEnd2;
+        if(gameOver){
+            return;
+        }
         if(this.coinsBar.percentage !== 100){
             let enemyCreationInterval = 2.5;
             let now = performance.now();
@@ -124,7 +130,9 @@ class World {
             this.character.bubble.x += 10;
         }
         this.checkCollisions();
-        requestAnimationFrame(() => this.drawWorld());
+        if(!gameOver){
+            requestAnimationFrame(() => this.drawWorld());
+        }
     }
     
 
