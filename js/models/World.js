@@ -82,11 +82,12 @@ class World {
                 })
     }
 
-    waitForImage = () => {
-        if (this.startScreen.img && this.startScreen.img.complete) {
-            this.addToMap(this.startScreen);
-          } else {                setTimeout(this.waitForImage, 50);
-        }   
+    waitForImage = (drawableObj) => {
+        if (drawableObj.img && drawableObj.img.complete) {
+            this.addToMap(drawableObj);
+        } else {
+            setTimeout(() => this.waitForImage(drawableObj), 50);
+        }
     };
 
     drawWorld() {
@@ -98,7 +99,12 @@ class World {
             window.intervalIds = [];
             this.ctx.clearRect(0, 0, canvas.width, canvas.height);
             this.startScreen = new StartScreen(wonGame);
-            this.waitForImage();
+            console.log("StartScreen-Objekte:", this.startScreen.objects);
+            this.startScreen.objects.forEach(img => {
+                console.log(img);
+                this.waitForImage(img);
+            });
+            
             return;
         }
         if(this.coinsBar.percentage !== 100){
