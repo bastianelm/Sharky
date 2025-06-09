@@ -99,12 +99,18 @@ class World {
             window.intervalIds = [];
             this.ctx.clearRect(0, 0, canvas.width, canvas.height);
             this.startScreen = new StartScreen(wonGame);
-            console.log("StartScreen-Objekte:", this.startScreen.objects);
             this.startScreen.objects.forEach(img => {
-                console.log(img);
                 this.waitForImage(img);
             });
-            
+            canvas.addEventListener("click", (event) => {
+                const rect = canvas.getBoundingClientRect();
+                const clickX = event.clientX - rect.left;
+                const clickY = event.clientY - rect.top;
+
+                if (typeof world.startScreen !== "undefined") { 
+                    world.startScreen.handleClick(clickX, clickY);
+                }
+            });
             return;
         }
         if(this.coinsBar.percentage !== 100){
