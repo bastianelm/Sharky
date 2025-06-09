@@ -3,7 +3,6 @@ class World {
     level = level1;
     backgroundObjects = this.level.backgroundObjects;
     character = new Character();
-    startScreen = new StartScreen();
     cameraX = 0;
     canvas;
     ctx;
@@ -83,6 +82,12 @@ class World {
                 })
     }
 
+    waitForImage = () => {
+        if (this.startScreen.img && this.startScreen.img.complete) {
+            this.addToMap(this.startScreen);
+          } else {                setTimeout(this.waitForImage, 50);
+        }   
+    };
 
     drawWorld() {
         let wonGame = this.endbossSpawned === true && this.level.enemies[0].isDead === true && this.level.enemies[0].y === 0;
@@ -93,7 +98,7 @@ class World {
             window.intervalIds = [];
             this.ctx.clearRect(0, 0, canvas.width, canvas.height);
             this.startScreen = new StartScreen(wonGame);
-            this.addToMap(this.startScreen);
+            this.waitForImage();
             return;
         }
         if(this.coinsBar.percentage !== 100){
