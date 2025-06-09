@@ -6,8 +6,8 @@ class StartScreen {
     };
     wonGame = {
         'img': 'img/6.Botones/Tittles/You win/Mesa de trabajo 1.png',
-        'width' : 720,
-        'height' : 405,
+        'width' : 520,
+        'height' : 205,
     }
     reloadButton = {
         'img': 'img/6.Botones/Try again/Recurso 17.png',
