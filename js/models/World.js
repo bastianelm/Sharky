@@ -3,6 +3,7 @@ class World {
     level = level1;
     backgroundObjects = this.level.backgroundObjects;
     character = new Character();
+    startScreen = new StartScreen();
     cameraX = 0;
     canvas;
     ctx;
@@ -84,13 +85,15 @@ class World {
 
 
     drawWorld() {
-        let gameEnd1 = this.endbossSpawned === true && this.level.enemies[0].isDead === true && this.level.enemies[0].y === 0;
-        let gameEnd2 = this.character.isDead === true && this.character.y <= 0;
-        let gameOver = gameEnd1 || gameEnd2;
+        let wonGame = this.endbossSpawned === true && this.level.enemies[0].isDead === true && this.level.enemies[0].y === 0;
+        let lostGame = this.character.isDead === true && this.character.y <= 0;
+        let gameOver = wonGame || lostGame;
         if(gameOver){
             window.stopGame();
             window.intervalIds = [];
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+            this.startScreen = new StartScreen(wonGame);
+            this.addToMap(this.startScreen);
             return;
         }
         if(this.coinsBar.percentage !== 100){
