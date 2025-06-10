@@ -1,4 +1,4 @@
-class StartScreen {
+class EndScreen {
 
     lostGame = {
         'img' : 'img/6.Botones/Tittles/Game Over/Recurso 9.png',

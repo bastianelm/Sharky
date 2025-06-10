@@ -100,8 +100,8 @@ class World {
             window.stopGame();
             window.intervalIds = [];
             this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-            this.startScreen = new StartScreen(wonGame);
-            this.startScreen.objects.forEach(img => {
+            this.endScreen = new EndScreen(wonGame);
+            this.endScreen.objects.forEach(img => {
                 this.waitForImage(img);
             });
             cancelAnimationFrame(this.gameLoop);
@@ -109,8 +109,8 @@ class World {
                 const rect = canvas.getBoundingClientRect();
                 const clickX = event.clientX - rect.left;
                 const clickY = event.clientY - rect.top;
-                if (typeof world.startScreen !== "undefined") { 
-                    world.startScreen.handleClick(clickX, clickY);
+                if (typeof world.endScreen !== "undefined") { 
+                    world.endScreen.handleClick(clickX, clickY);
                 }
             });
             return;
