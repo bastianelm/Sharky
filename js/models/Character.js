@@ -6,6 +6,7 @@ class Character extends MoveableObject {
     speed = 10;
     coins = 0;
     poisonBottles = 0;
+    bubbles = [];
     IMAGE_SWIMMING = [
         'img/1.Sharkie/3.Swim/1.png',
         'img/1.Sharkie/3.Swim/2.png',
@@ -69,7 +70,7 @@ class Character extends MoveableObject {
                 }
     
                 // down movment
-                if (this.world.keyboard.DOWN && this.y < world.canvas.height - this.height -this.world.uiArea) {
+                if (this.world.keyboard.DOWN && this.y < this.world.canvas.height - this.height -this.world.uiArea) {
                     this.moveDown();
                 }
                 
@@ -79,10 +80,13 @@ class Character extends MoveableObject {
                 }
 
                 if (this.world.keyboard.SPACE && this.poisonBottles > 0 && !this.otherDirection){
+                    console.log("attack");
                     this.attack = true;
+                    let bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
+                    this.bubbles.push(bubble);
+                    console.log(this.bubbles);
+                    this.world.addToMap(this.bubbles[this.bubbles.length-1]);
                     this.poisonBottles--;
-                    this.bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
-                    this.world.addToMap(this.bubble);
                     this.world.bubblesBar.setPercentage(this.poisonBottles/100/4);
                 }
 

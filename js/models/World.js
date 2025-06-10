@@ -50,12 +50,15 @@ class World {
     }
 
     checkCollisions(){
-                this.level.enemies.forEach(enemy=>{
-                    if(this.character.bubble !== undefined && enemy.isColliding(this.character.bubble )){
-                        enemy.hit(2000);
-                        this.character.bubble = undefined;
-                    }
-                })
+                this.level.enemies.forEach(enemy => {
+                    this.character.bubbles.forEach(bubble => {
+                        if(enemy.isColliding(bubble)) {
+                            enemy.hit(2000);
+                            let index = this.character.bubbles.indexOf(bubble);
+                            this.character.bubbles.splice(index, 1);
+                        }
+                    });
+                });
                 this.level.enemies.forEach(enemy => {
                     if(this.character.isColliding(enemy) && !enemy.isDead){
                         this.character.hit(20);
@@ -150,9 +153,11 @@ class World {
         this.addToMap(this.healthBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bubblesBar);
-        if(this.character.bubble !== undefined){
-            this.addToMap(this.character.bubble);
-            this.character.bubble.x += 10;
+        if(this.character.bubbles.length !== 0){
+            this.addObjectsToMap(this.character.bubbles);
+            this.character.bubbles.forEach(bubble => {
+                bubble.x += 5;
+            });
         }
         this.checkCollisions();
         if(!this.gameOver){
