@@ -46,6 +46,7 @@ class EndScreen {
            init();
            world.level.enemies = [];
            world.level.newCoins();
+           world.level.newPoisonBottles();
         }
     }
 
