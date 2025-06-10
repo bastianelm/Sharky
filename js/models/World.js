@@ -6,10 +6,12 @@ class World {
     cameraX = 0;
     canvas;
     ctx;
-    keybaord;
+    keyboard;
     startTime = performance.now();
     lastEnemyCreation = this.startTime;
     endbossSpawned = false;
+    gameLoop;
+    gameOver = false;
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
@@ -93,8 +95,8 @@ class World {
     drawWorld() {
         let wonGame = this.endbossSpawned === true && this.level.enemies[0].isDead === true && this.level.enemies[0].y === 0;
         let lostGame = this.character.isDead === true && this.character.y <= 0;
-        let gameOver = wonGame || lostGame;
-        if(gameOver){
+        this.gameOver = wonGame || lostGame;
+        if(this.gameOver){
             window.stopGame();
             window.intervalIds = [];
             this.ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -102,11 +104,11 @@ class World {
             this.startScreen.objects.forEach(img => {
                 this.waitForImage(img);
             });
+            cancelAnimationFrame(this.gameLoop);
             canvas.addEventListener("click", (event) => {
                 const rect = canvas.getBoundingClientRect();
                 const clickX = event.clientX - rect.left;
                 const clickY = event.clientY - rect.top;
-
                 if (typeof world.startScreen !== "undefined") { 
                     world.startScreen.handleClick(clickX, clickY);
                 }
@@ -153,8 +155,8 @@ class World {
             this.character.bubble.x += 10;
         }
         this.checkCollisions();
-        if(!gameOver){
-            requestAnimationFrame(() => this.drawWorld());
+        if(!this.gameOver){
+            this.gameLoop = requestAnimationFrame(() => this.drawWorld());
         }
     }
     

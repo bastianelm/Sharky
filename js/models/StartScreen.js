@@ -35,7 +35,7 @@ class StartScreen {
         this.objects.push(screenImage, reloadButton);
     }
 
-    handleClick(clickX, clickY) {
+    handleClick(clickX, clickY,) {
         const reloadButton = this.objects[1]; // Annahme: Reload-Button ist an Index 1
         if (
             clickX >= reloadButton.x &&
@@ -43,7 +43,9 @@ class StartScreen {
             clickY >= reloadButton.y &&
             clickY <= reloadButton.y + reloadButton.height
         ) {
-            console.log("Reload-Button geklickt!");
+           init();
+           world.level.enemies = [];
+           world.level.newCoins();
         }
     }
 
