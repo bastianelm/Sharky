@@ -46,29 +46,37 @@ class MoveableObject extends DrawableObject{
         this.currentImage++;
    }
 
-    chooseAnimation(){
-        if(this.isDead){
-            if(this.deathLoopIteration <= this.IMAGE_DEATH.length-1){
-                this.playAnimation(this.IMAGE_DEATH);
-            }
-            this.y -= this.speed;
-            this.deathLoopIteration++;
+   chooseAnimation() {
+    if (this.isDead) {
+        if (this.deathLoopIteration <= this.IMAGE_DEATH.length - 1) {
+            this.playAnimation(this.IMAGE_DEATH);
         }
-        else if(this.attack){
-            if(this.attackLoopIteration <= this.IMAGE_ATTACK.length-1){
-                this.playAnimation(this.IMAGE_ATTACK);
-                this.attackLoopIteration++;
-            } else{
-                this.attack = false;
-                this.attackLoopIteration = 0;
-            }
-        } else{
-            this.playAnimation(this.IMAGE_SWIMMING);
-            if(this.constructor.name !== 'Character'){
-                this.moveLeft();
-            }
+        this.y -= this.speed;
+        this.deathLoopIteration++;
+    } else if (this.attack) {
+        if (this.attackLoopIteration <= this.IMAGE_ATTACK.length - 1) {
+            this.playAnimation(this.IMAGE_ATTACK);
+            this.attackLoopIteration++;
+        } else {
+            this.attack = false;
+            this.attackLoopIteration = 0;
         }
+    } else if (this.swimming || this.constructor.name !== 'Character') {
+        this.playAnimation(this.IMAGE_SWIMMING);
+        if (this.constructor.name !== 'Character') {
+            this.moveLeft();
+        }
+    } else {
+        // 🚨 Das hier war vorher nicht drin – jetzt idlet er korrekt:
+        this.playAnimation(this.IMAGE_IDLE);
     }
+
+    // swimming immer zurücksetzen, damit es nur beim Tastendruck aktiv ist
+    if (this.constructor.name === 'Character') {
+        this.swimming = false;
+    }
+}
+
     moveLeft(){
         this.x -= this.speed;
     }
