@@ -162,6 +162,17 @@ class Character extends MoveableObject {
             super.chooseAnimation();
         
     }
+
+    reset() {
+        this.lives = 1000;
+        this.isHurt = false;
+        this.isDead = false;
+        this.poisoned = false;
+        this.bubbles = [];
+        this.coins = 0;
+        this.poisonBottles = 0;
+    }
+    
     
     
 }

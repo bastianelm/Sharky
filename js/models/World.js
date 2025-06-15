@@ -114,6 +114,7 @@ class World {
                 this.waitForImage(img);
             });
             cancelAnimationFrame(this.gameLoop);
+            this.character.reset();            
             canvas.addEventListener("click", (event) => {
                 const rect = canvas.getBoundingClientRect();
                 const clickX = event.clientX - rect.left;
@@ -122,8 +123,6 @@ class World {
                     world.endScreen.handleClick(clickX, clickY);
                 }
             });
-            this.character.isHurt = false;
-            this.character.isDead = false;
             return;
         }
         if(this.coinsBar.percentage !== 100){
