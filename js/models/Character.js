@@ -8,6 +8,7 @@ class Character extends MoveableObject {
     poisonBottles = 0;
     bubbles = [];
     swimming = false;
+    canAttack = false;
     IMAGE_IDLE = [
         'img/1.Sharkie/1.IDLE/1.png',
         'img/1.Sharkie/1.IDLE/2.png',
@@ -28,6 +29,22 @@ class Character extends MoveableObject {
         'img/1.Sharkie/1.IDLE/17.png',
         'img/1.Sharkie/1.IDLE/18.png',
     ];
+    IMAGE_SLEEP = [
+        'img/1.Sharkie/2.Long_IDLE/i1.png',
+        'img/1.Sharkie/2.Long_IDLE/i2.png',
+        'img/1.Sharkie/2.Long_IDLE/i3.png',
+        'img/1.Sharkie/2.Long_IDLE/i4.png',
+        'img/1.Sharkie/2.Long_IDLE/i5.png',
+        'img/1.Sharkie/2.Long_IDLE/i6.png',
+        'img/1.Sharkie/2.Long_IDLE/i7.png',
+        'img/1.Sharkie/2.Long_IDLE/i8.png',
+        'img/1.Sharkie/2.Long_IDLE/i9.png',
+        'img/1.Sharkie/2.Long_IDLE/i10.png',
+        'img/1.Sharkie/2.Long_IDLE/i11.png',
+        'img/1.Sharkie/2.Long_IDLE/i12.png',
+        'img/1.Sharkie/2.Long_IDLE/i13.png',
+        'img/1.Sharkie/2.Long_IDLE/i14.png',
+    ]
     IMAGE_SWIMMING = [
         'img/1.Sharkie/3.Swim/1.png',
         'img/1.Sharkie/3.Swim/2.png',
@@ -36,6 +53,18 @@ class Character extends MoveableObject {
         'img/1.Sharkie/3.Swim/5.png',
         'img/1.Sharkie/3.Swim/6.png',
     ];
+    IMAGE_HURT_POISONED = [
+        'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/5.png',
+    ]
+    IMAGE_HURT_SHOCKED = [
+        'img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
+        'img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
+        'img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
+    ]
     IMAGE_DEATH = [
         'img/1.Sharkie/6.dead/1.Poisoned/1.png',
         'img/1.Sharkie/6.dead/1.Poisoned/2.png',
@@ -66,11 +95,13 @@ class Character extends MoveableObject {
 
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
-        super.loadImages(this.IMAGE_IDLE);
+        this.loadImages(this.IMAGE_IDLE);
+        super.loadImages(this.IMAGE_SLEEP);
         this.loadImages(this.IMAGE_SWIMMING);
+        this.loadImages(this.IMAGE_HURT_POISONED);
+        this.loadImages(this.IMAGE_HURT_SHOCKED);
         this.loadImages(this.IMAGE_DEATH);
         this.loadImages(this.IMAGE_ATTACK);
-        this.playAnimation(this.IMAGE_SWIMMING);
         window.setStoppableInterval(this.animate.bind(this), 150);
     }
 
@@ -81,6 +112,9 @@ class Character extends MoveableObject {
                 }
                 if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.DOWN || this.world.keyboard.UP){
                     this.swimming = true;
+                    this.sleeping = false;
+                } else{
+                    this.swimming = false;
                 }
                 // right movement
                 if (this.world.keyboard.RIGHT && this.x + this.width + this.speed < this.world.level.levelEndX) {
@@ -103,13 +137,12 @@ class Character extends MoveableObject {
                 if (this.world.keyboard.UP && this.y > 0) {
                     this.moveUp();
                 }
-
-                if (this.world.keyboard.SPACE && this.poisonBottles > 0 && !this.otherDirection){
-                    console.log("attack");
+                if (this.world.keyboard.SPACE && this.poisonBottles > 0 && !this.otherDirection && this.canAttack){
+                    this.sleeping = false;
+                    this.canAttack = false;
                     this.attack = true;
                     let bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
                     this.bubbles.push(bubble);
-                    console.log(this.bubbles);
                     this.world.addToMap(this.bubbles[this.bubbles.length-1]);
                     this.poisonBottles--;
                     this.world.bubblesBar.setPercentage(this.poisonBottles/100/4);

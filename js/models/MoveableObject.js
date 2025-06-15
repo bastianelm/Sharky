@@ -4,10 +4,13 @@ class MoveableObject extends DrawableObject{
     introLoopIteration = 0;
     lives = 1000;
     isHurt = false;
+    poisoned = false;
     isDead = false;
     attack = false;
     deathLoopIteration = 0;
     attackLoopIteration = 0;
+    sleeping = false;
+    swimming = true;
 
     renderFlippedImage(ctx){
         ctx.save();
@@ -47,35 +50,55 @@ class MoveableObject extends DrawableObject{
    }
 
    chooseAnimation() {
-    if (this.isDead) {
-        if (this.deathLoopIteration <= this.IMAGE_DEATH.length - 1) {
-            this.playAnimation(this.IMAGE_DEATH);
+        if (this.isDead) {
+            if (this.deathLoopIteration <= this.IMAGE_DEATH.length - 1) {
+                this.playAnimation(this.IMAGE_DEATH);
+            }
+            this.y -= this.speed;
+            this.deathLoopIteration++;
         }
-        this.y -= this.speed;
-        this.deathLoopIteration++;
-    } else if (this.attack) {
-        if (this.attackLoopIteration <= this.IMAGE_ATTACK.length - 1) {
-            this.playAnimation(this.IMAGE_ATTACK);
-            this.attackLoopIteration++;
-        } else {
-            this.attack = false;
-            this.attackLoopIteration = 0;
+        else if(this.isHurt){
+            if(this.poisoned){
+                this.playAnimation(this.IMAGE_HURT_POISONED);
+            } else{
+                this.playAnimation(this.IMAGE_HURT_SHOCKED);
+            }
         }
-    } else if (this.swimming || this.constructor.name !== 'Character') {
-        this.playAnimation(this.IMAGE_SWIMMING);
-        if (this.constructor.name !== 'Character') {
-            this.moveLeft();
+        else if (this.attack) {
+            if (this.attackLoopIteration <= this.IMAGE_ATTACK.length - 1) {
+                this.playAnimation(this.IMAGE_ATTACK);
+                this.attackLoopIteration++;
+            } else {
+                this.attack = false;
+                this.attackLoopIteration = 0;
+            }
+        } else if (this.swimming || this.constructor.name !== 'Character') {
+            this.playAnimation(this.IMAGE_SWIMMING);
+            if (this.constructor.name !== 'Character') {
+                this.moveLeft();
+            }
         }
-    } else {
-        // 🚨 Das hier war vorher nicht drin – jetzt idlet er korrekt:
-        this.playAnimation(this.IMAGE_IDLE);
+        else if(this.sleeping){
+            this.playAnimation(this.IMAGE_SLEEP);
+        }
+        else{
+            this.playAnimation(this.IMAGE_IDLE);
+            setTimeout(() => {
+                this.sleeping = true;
+            }, 3000);
+        }
     }
 
-    // swimming immer zurücksetzen, damit es nur beim Tastendruck aktiv ist
-    if (this.constructor.name === 'Character') {
-        this.swimming = false;
+    setHurt(duration = 500) {
+        if(this.isHurt || this.isDead){
+            return;
+        }
+        this.isHurt = true;
+        setTimeout(() => {
+            this.isHurt = false;
+            this.poisoned = false;
+        }, duration);
     }
-}
 
     moveLeft(){
         this.x -= this.speed;

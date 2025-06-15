@@ -61,7 +61,13 @@ class World {
                 });
                 this.level.enemies.forEach(enemy => {
                     if(this.character.isColliding(enemy) && !enemy.isDead){
-                        this.character.hit(20);
+                        if(enemy.constructor.name === 'PufferFish'){
+                            this.character.poisoned = true;
+                            this.character.hit(20);
+                        }else {
+                            this.character.hit(20);
+                        }
+                        this.character.setHurt();
                         this.healthBar.setPercentage(this.character.lives/(1000/100));
                     }
                 });
