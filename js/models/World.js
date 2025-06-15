@@ -122,6 +122,8 @@ class World {
                     world.endScreen.handleClick(clickX, clickY);
                 }
             });
+            this.character.isHurt = false;
+            this.character.isDead = false;
             return;
         }
         if(this.coinsBar.percentage !== 100){
