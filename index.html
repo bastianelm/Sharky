@@ -26,10 +26,10 @@
     <script defer src="js/models/EndScreen.js"></script>
     <script defer src="game.js"></script>
 </head>
-<body onload="init()">
+<body onload="init()" style="display:flex; justify-content:center; align-items:center;">
     <!-- Main Menu Screen -->
     <div class="screen centeredFlex littleGap" id="mainMenu">
-        <button onclick="startGame()"><img src="img/6.Botones/Start/4.png"></button>
+        <button id="startButton" onclick="startNewGame()"><img src="img/6.Botones/Start/4.png"></button>
     </div>
     <canvas class="screen hidden" id="canvas"></canvas>
 </body>
@@ -43,4 +43,4 @@
             window.intervalIds.forEach(clearInterval)
         };
 </script>
-</html>
+</html>^^  

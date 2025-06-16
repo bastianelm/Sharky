@@ -7,6 +7,17 @@ function init(){
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
 }
+function startNewGame(){
+    console.log("new game");
+    let mainMenu = document.getElementById('mainMenu');
+    toggleElementsDisplay(canvas, mainMenu);
+}
+
+function toggleElementsDisplay(e1, e2){
+    console.log(e1 + " " + e2);
+	e1.style.display === "hidden" ? e1.style.display = 'flex' : e1.style.display = 'hidden';
+	e2.style.display === "hidden" ? e2.style.display = 'flex' : e2.style.display = 'hidden';
+}
 
 window.addEventListener('keydown',(e)=>{
     if(e.keyCode === 39){
