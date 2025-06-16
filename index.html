@@ -27,7 +27,11 @@
     <script defer src="game.js"></script>
 </head>
 <body onload="init()">
-    <canvas id="canvas" width="720" height="530"></canvas>
+    <!-- Main Menu Screen -->
+    <div class="screen centeredFlex littleGap" id="mainMenu">
+        <button onclick="startGame()"><img src="img/6.Botones/Start/4.png"></button>
+    </div>
+    <canvas class="screen hidden" id="canvas"></canvas>
 </body>
 <script>
         window.intervalIds = [];

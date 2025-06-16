@@ -9,8 +9,28 @@ body{
     justify-content:center;
     background:url("img/3. Background/Layers/5. Water/D1.png");
 }
-
+link, button{
+    cursor:pointer;
+}
 canvas{
     background:rgb(41, 32, 101);
     border:2px solid white;
+}
+.hidden{
+    display:none;
+}
+.screen{
+    width:720px;
+    height:530px;
+}
+#mainMenu{
+    border:1px solid white;
+}
+.centeredFlex{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.littleGap{
+    gap:15px;
 }
