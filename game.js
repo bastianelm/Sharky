@@ -7,16 +7,19 @@ function init(){
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
 }
-function startNewGame(){
+function startNewGame() {
     console.log("new game");
-    let mainMenu = document.getElementById('mainMenu');
+    const mainMenu = document.getElementById('mainMenu');
+    const canvas = document.getElementById('canvas'); // HIER fehlt's
+    console.log('Canvas:', canvas); 
+    console.log('MainMenu:', mainMenu);
     toggleElementsDisplay(canvas, mainMenu);
 }
 
-function toggleElementsDisplay(e1, e2){
-    console.log(e1 + " " + e2);
-	e1.style.display === "hidden" ? e1.style.display = 'flex' : e1.style.display = 'hidden';
-	e2.style.display === "hidden" ? e2.style.display = 'flex' : e2.style.display = 'hidden';
+
+function toggleElementsDisplay(e1, e2) {
+    e1.classList.toggle('hidden');
+    e2.classList.toggle('hidden');
 }
 
 window.addEventListener('keydown',(e)=>{
