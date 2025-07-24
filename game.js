@@ -8,11 +8,8 @@ function init(){
     ctx = canvas.getContext('2d');
 }
 function startNewGame() {
-    console.log("new game");
     const mainMenu = document.getElementById('mainMenu');
-    const canvas = document.getElementById('canvas'); // HIER fehlt's
-    console.log('Canvas:', canvas); 
-    console.log('MainMenu:', mainMenu);
+    const canvas = document.getElementById('canvas');
     toggleElementsDisplay(canvas, mainMenu);
 }
 

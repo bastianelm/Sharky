@@ -74,7 +74,7 @@ class MoveableObject extends DrawableObject{
             }
         } else if (this.swimming || this.constructor.name !== 'Character') {
             this.playAnimation(this.IMAGE_SWIMMING);
-            if (this.constructor.name !== 'Character') {
+            if (this.constructor.name !== 'Character' && this.constructor.name !== 'Endboss') {
                 this.moveLeft();
             }
         }

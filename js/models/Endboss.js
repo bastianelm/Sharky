@@ -1,5 +1,5 @@
 class Endboss extends MoveableObject{
-    speed = 8.5;
+    speed = 5;
     width = 200;
     height = 200;
     lives = 6000;
@@ -34,7 +34,30 @@ class Endboss extends MoveableObject{
     IMAGE_DEATH = [
         'img/2.Enemy/3 Final Enemy/Dead/dead1.png',
         'img/2.Enemy/3 Final Enemy/Dead/dead2.png'
-    ]  
+    ]
+
+    move(){
+        let tolerance = 20;
+        this.moveInterval = setStoppableInterval(() => {
+            if(this.isDead){
+                clearInterval(this.moveInterval);
+                return;
+            }
+            if (this.y < world.character.y - tolerance) {
+                this.moveDown();
+            } else {
+                this.moveUp();
+            }
+            if (this.x < world.character.x - tolerance) {
+                this.otherDirection = true;
+                this.moveRight();
+            } else {
+                this.otherDirection = false;
+                this.moveLeft();
+            }            
+        }, 200);
+    }
+
     constructor(){
         super();
         this.loadImage(this.IMAGE_INTRODUCE[0]);
@@ -43,6 +66,7 @@ class Endboss extends MoveableObject{
         this.loadImages(this.IMAGE_DEATH);
         this.x = canvas.width - this.width;
         this.y = 0;
-        window.setStoppableInterval((this.animate(),150));
+        this.move();
+        //window.setStoppableInterval((this.animate(),150));
     }
 }
