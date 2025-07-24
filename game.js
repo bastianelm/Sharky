@@ -37,7 +37,7 @@ window.addEventListener('keydown',(e)=>{
     }
     if(e.keyCode === 32){
         keyboard.SPACE = true;
-        world.character.canAttack = false;
+        world.character.canAttack = true;
     }
 });
 
@@ -55,8 +55,6 @@ window.addEventListener('keyup',(e)=>{
         keyboard.DOWN = false;
     }
     if(e.keyCode === 32){
-        keyboard.SPACE = true;
-        world.character.canAttack = true;
-        world.character.attack = true;
+        keyboard.SPACE = false;
     }
 });

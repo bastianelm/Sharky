@@ -138,6 +138,7 @@ class Character extends MoveableObject {
                     this.moveUp();
                 }
                 if (this.world.keyboard.SPACE && this.poisonBottles > 0 && !this.otherDirection && this.canAttack){
+                    console.log(this.world.character);
                     this.sleeping = false;
                     this.canAttack = false;
                     this.attack = true;
@@ -147,8 +148,7 @@ class Character extends MoveableObject {
                     this.poisonBottles--;
                     this.world.bubblesBar.setPercentage(this.poisonBottles/100/4);
                 }
-
-    
+                
                 // Kamera-Logik
                 const scrollBorder = this.world.canvas.width / 3; // wie weit links der Char max. stehen darf
                 const desiredCameraX = -this.x + scrollBorder;
