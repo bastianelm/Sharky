@@ -34,6 +34,8 @@
     <canvas width="720" height="530" class="screen hidden" id="canvas"></canvas>
 </body>
 <script>
+        canvas.width = 720;
+        canvas.height = 530;
         window.intervalIds = [];
         window.setStoppableInterval = (fn, time)=>{
             let id = setInterval(fn, time);

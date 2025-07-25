@@ -1,36 +1,50 @@
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-body{
-    height:100vh;
-    display:flex;
+
+body {
+    height: 100vh;
+    width: 100%;
+    display: flex;
     align-items: center;
-    justify-content:center;
-    background:url("img/3. Background/Layers/5. Water/D1.png");
+    justify-content: center;
+    background: url("img/3. Background/Layers/5. Water/D1.png") no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
 }
-link, button{
-    cursor:pointer;
+
+canvas {
+    background: rgb(41, 32, 101);
+    border: 2px solid white;
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+    aspect-ratio: 720 / 530;
+    background-color: #292065;
+    border: 2px solid white;    
 }
-canvas{
-    background:rgb(41, 32, 101);
-    border:2px solid white;
+
+.hidden {
+    display: none !important;
 }
-.hidden{
-    display:none !important;
+
+.screen {
+    width: 720px;
+    height: 530px;
 }
-.screen{
-    width:720px;
-    height:530px;
+
+#mainMenu {
+    border: 1px solid white;
 }
-#mainMenu{
-    border:1px solid white;
-}
-.centeredFlex{
-    display:flex;
+
+.centeredFlex {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-.littleGap{
-    gap:15px;
+
+.littleGap {
+    gap: 15px;
 }
