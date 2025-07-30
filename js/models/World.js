@@ -37,9 +37,6 @@ class World {
     }
 
     addToMap(object){
-        if(object instanceof BackgroundObject === false){
-                //object.renderHitBox(this.ctx);
-        }
         if (object.otherDirection) {
             //turns around the image
             object.renderFlippedImage(this.ctx);
