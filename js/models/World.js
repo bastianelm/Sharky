@@ -148,9 +148,6 @@ class World {
                 this.endbossSpawned = true;
             }
         }
-        if(this.endbossSpawned){
-            
-        }
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.save(); // aktuellen Zeichenkontext speichern
         this.ctx.translate(this.cameraX, 0); // Kamera anwenden
