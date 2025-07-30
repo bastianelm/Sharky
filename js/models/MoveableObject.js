@@ -58,6 +58,7 @@ class MoveableObject extends DrawableObject{
             this.deathLoopIteration++;
         }
         else if(this.isHurt){
+            console.log("hurt: " + world.character.isHurt + " " + this.isHurt);
             if(this.poisoned){
                 this.playAnimation(this.IMAGE_HURT_POISONED);
             } else{

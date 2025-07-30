@@ -3,7 +3,6 @@ let world;
 let keyboard = new Keyboard();
 
 function init(){
-    console.log("init");
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
