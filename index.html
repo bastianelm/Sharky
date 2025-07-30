@@ -40,9 +40,10 @@
         window.setStoppableInterval = (fn, time)=>{
             let id = setInterval(fn, time);
             window.intervalIds.push(id);
+            console.trace();
         }
         window.stopGame = ()=>{
-            window.intervalIds.forEach(clearInterval)
+            window.intervalIds.forEach(clearInterval);
         };
 </script>
 </html>
