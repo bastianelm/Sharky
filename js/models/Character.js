@@ -95,6 +95,7 @@ class Character extends MoveableObject {
 
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
+        this.reset();
         this.loadImages(this.IMAGE_IDLE);
         super.loadImages(this.IMAGE_SLEEP);
         this.loadImages(this.IMAGE_SWIMMING);
@@ -138,7 +139,6 @@ class Character extends MoveableObject {
                     this.moveUp();
                 }
                 if (this.world.keyboard.SPACE && this.poisonBottles > 0 && !this.otherDirection && this.canAttack){
-                    console.log(this.world.character);
                     this.sleeping = false;
                     this.canAttack = false;
                     this.attack = true;
