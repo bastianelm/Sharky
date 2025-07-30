@@ -146,7 +146,7 @@ class Character extends MoveableObject {
                     this.bubbles.push(bubble);
                     this.world.addToMap(this.bubbles[this.bubbles.length-1]);
                     this.poisonBottles--;
-                    this.world.bubblesBar.setPercentage(this.poisonBottles/100/4);
+                    this.world.bubblesBar.setPercentage(this.poisonBottles/(4/100));
                 }
                 
                 // Kamera-Logik
