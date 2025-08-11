@@ -21,7 +21,6 @@ function toggleElementsDisplay(e1, e2) {
 }
 
 window.addEventListener('keydown',(e)=>{
-    console.log(e.keyCode);
     if(e.keyCode === 39){
         keyboard.RIGHT = true;
     }
@@ -34,13 +33,15 @@ window.addEventListener('keydown',(e)=>{
     if(e.keyCode === 40){
         keyboard.DOWN = true;
     }
-    if(e.keyCode === 32){
+    if (e.keyCode === 32) {
         keyboard.SPACE = true;
         world.character.canAttack = true;
+        world.character.attackKey = 32;
     }
-    if(e.keyCode === 68){
+    if (e.keyCode === 68) {
         keyboard.D = true;
         world.character.canAttack = true;
+        world.character.attackKey = 68;
     }
 });
 

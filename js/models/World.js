@@ -58,14 +58,18 @@ class World {
                 });
                 this.level.enemies.forEach(enemy => {
                     if(this.character.isColliding(enemy) && !enemy.isDead){
-                        if(enemy.constructor.name === 'PufferFish'){
-                            this.character.poisoned = true;
-                            this.character.hit(20);
-                        }else {
-                            this.character.hit(20);
+                        if(this.character.attack && this.character.attackKey === 68){
+                            enemy.hit(20);
+                        } else{
+                            if(enemy.constructor.name === 'PufferFish'){
+                                this.character.poisoned = true;
+                                this.character.hit(20);
+                            }else {
+                                this.character.hit(20);
+                            }
+                            this.character.setHurt();
+                            this.healthBar.setPercentage(this.character.lives/(1000/100));
                         }
-                        this.character.setHurt();
-                        this.healthBar.setPercentage(this.character.lives/(1000/100));
                     }
                 });
                 this.level.coins.forEach(coin => {

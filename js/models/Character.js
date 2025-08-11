@@ -9,6 +9,8 @@ class Character extends MoveableObject {
     bubbles = [];
     swimming = false;
     canAttack = false;
+    attackKey;
+
     IMAGE_IDLE = [
         'img/1.Sharkie/1.IDLE/1.png',
         'img/1.Sharkie/1.IDLE/2.png',
@@ -164,7 +166,6 @@ class Character extends MoveableObject {
                 if (this.world.keyboard.D && this.canAttack){
                     this.canAttack = false;
                     this.attack = true;
-                    
                 }
 
                 // Kamera-Logik

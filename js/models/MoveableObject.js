@@ -58,7 +58,6 @@ class MoveableObject extends DrawableObject{
             this.deathLoopIteration++;
         }
         else if(this.isHurt){
-            console.log("hurt: " + world.character.isHurt + " " + this.isHurt);
             if(this.poisoned){
                 this.playAnimation(this.IMAGE_HURT_POISONED);
             } else{
@@ -66,7 +65,7 @@ class MoveableObject extends DrawableObject{
             }
         }
         else if (this.attack) {
-            let choosenImages = keyboard.D ? this.IMAGE_FIN_SLAP : this.IMAGE_ATTACK;
+            let choosenImages = (this.attackKey === 68) ? this.IMAGE_FIN_SLAP : this.IMAGE_ATTACK;
             if (this.attackLoopIteration <= choosenImages.length - 1) {
                 this.playAnimation(choosenImages);
                 this.attackLoopIteration++;
