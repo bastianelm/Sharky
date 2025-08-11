@@ -90,6 +90,17 @@ class Character extends MoveableObject {
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
     ];
+
+    IMAGE_FIN_SLAP = [
+        'img/1.Sharkie/4.Attack/Fin slap/1.png',
+        'img/1.Sharkie/4.Attack/Fin slap/2.png',
+        'img/1.Sharkie/4.Attack/Fin slap/3.png',
+        'img/1.Sharkie/4.Attack/Fin slap/4.png',
+        'img/1.Sharkie/4.Attack/Fin slap/5.png',
+        'img/1.Sharkie/4.Attack/Fin slap/6.png',
+        'img/1.Sharkie/4.Attack/Fin slap/7.png',
+        'img/1.Sharkie/4.Attack/Fin slap/8.png',
+    ];
     
     world;
 
@@ -103,6 +114,7 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGE_HURT_SHOCKED);
         this.loadImages(this.IMAGE_DEATH);
         this.loadImages(this.IMAGE_ATTACK);
+        this.loadImages(this.IMAGE_FIN_SLAP);
         window.setStoppableInterval(this.animate.bind(this), 150);
     }
 
@@ -149,6 +161,12 @@ class Character extends MoveableObject {
                     this.world.bubblesBar.setPercentage(this.poisonBottles/(4/100));
                 }
                 
+                if (this.world.keyboard.D && this.canAttack){
+                    this.canAttack = false;
+                    this.attack = true;
+                    
+                }
+
                 // Kamera-Logik
                 const scrollBorder = this.world.canvas.width / 3; // wie weit links der Char max. stehen darf
                 const desiredCameraX = -this.x + scrollBorder;

@@ -66,8 +66,9 @@ class MoveableObject extends DrawableObject{
             }
         }
         else if (this.attack) {
-            if (this.attackLoopIteration <= this.IMAGE_ATTACK.length - 1) {
-                this.playAnimation(this.IMAGE_ATTACK);
+            let choosenImages = keyboard.D ? this.IMAGE_FIN_SLAP : this.IMAGE_ATTACK;
+            if (this.attackLoopIteration <= choosenImages.length - 1) {
+                this.playAnimation(choosenImages);
                 this.attackLoopIteration++;
             } else {
                 this.attack = false;
