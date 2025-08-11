@@ -171,6 +171,7 @@ class Character extends MoveableObject {
         this.bubbles = [];
         this.coins = 0;
         this.poisonBottles = 0;
+        this.attack = false;
     }
     
     
