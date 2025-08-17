@@ -10,20 +10,32 @@ function init(){
     sounds = {
         "mainBackground":new Audio("audio/underwater.mp3"),
     };
+    const soundBar = document.getElementById('soundBar');
+    const soundButton = document.getElementById('soundButton');
+    if (soundButton && sounds.mainBackground) {
+        soundButton.onclick = () => {
+            sounds.mainBackground.muted = !sounds.mainBackground.muted;
+            soundButton.innerHTML = sounds.mainBackground.muted ? '🔇' : '🔊';
+        };
+    }
 }
+
+function toggleElementsDisplay(array) {
+    array.forEach(element => {
+        element.classList.toggle('hidden');
+    });
+}
+
 function startNewGame() {
     init();
+    sounds.mainBackground.loop = true;
     sounds.mainBackground.play();
     const mainMenu = document.getElementById('mainMenu');
     const canvas = document.getElementById('canvas');
-    toggleElementsDisplay(canvas, mainMenu);
+    toggleElementsDisplay([canvas, mainMenu, soundBar]);
 }
 
-
-function toggleElementsDisplay(e1, e2) {
-    e1.classList.toggle('hidden');
-    e2.classList.toggle('hidden');
-}
+console.log(soundBar);
 
 window.addEventListener('keydown',(e)=>{
     if(e.keyCode === 39){
