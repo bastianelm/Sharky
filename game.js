@@ -1,17 +1,22 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let sounds;
 
 function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
+    sounds = {
+        "mainBackground":new Audio("audio/underwater.mp3"),
+    };
 }
 function startNewGame() {
+    init();
+    sounds.mainBackground.play();
     const mainMenu = document.getElementById('mainMenu');
     const canvas = document.getElementById('canvas');
     toggleElementsDisplay(canvas, mainMenu);
-    init();
 }
 
 
