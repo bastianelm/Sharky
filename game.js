@@ -212,6 +212,7 @@ window.addEventListener('keyup',(e)=>{
     
     // Reset attack keys
     if(e.keyCode === 32){
+        e.preventDefault();
         keyboard.SPACE = false;
     }
     if(e.keyCode === 68){
