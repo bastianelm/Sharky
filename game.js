@@ -40,6 +40,8 @@ function init(){
     if (!sounds) {
         sounds = {
             "mainBackground": new Audio("audio/underwater.mp3"),
+            "won": new Audio("audio/won.mp3"),
+            "lose": new Audio("audio/lose.mp3"),
         };
     }
     
