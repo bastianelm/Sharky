@@ -87,33 +87,29 @@ function toggleElementsDisplay(array) {
  * - Switches from menu to game view
  */
 function startNewGame() {
+    console.log("startnewgame");
     // Stop previous audio if it's running
     // Important: pause() stops playback, currentTime = 0 resets to beginning
     if (sounds && sounds.mainBackground) {
         sounds.mainBackground.pause();
         sounds.mainBackground.currentTime = 0;
     }
-    
     // Initialize game
     init();
-    
     // Set audio settings and start
     sounds.mainBackground.loop = true; // Infinite loop
     // .catch() handles errors (e.g. when browser blocks audio)
     sounds.mainBackground.play().catch(error => {
         console.error('Audio could not be played:', error);
     });
-    
     // Switch UI elements: hide menu, show canvas and sound bar
-    const mainMenu = document.getElementById('mainMenu');
+    const menu = document.getElementById('menu');
     const canvas = document.getElementById('canvas');
-    
     // Ensure soundBar is defined (fallback)
     if (!soundBar) {
         soundBar = document.getElementById('soundBar');
     }
-    
-    toggleElementsDisplay([canvas, mainMenu, soundBar]);
+    toggleElementsDisplay([canvas, menu, soundBar]);
 }
 
 /**
@@ -126,7 +122,6 @@ function startNewGame() {
  * - Resets level objects
  * - Restarts audio
  * 
- * This function is called by EndScreen.js
  */
 function restartGame() {
     // Reset audio - important for clean restart
@@ -137,11 +132,11 @@ function restartGame() {
     
     // Reinitialize game
     init();
-    
-    // Reset level (as required by EndScreen.js)
+
     world.level.enemies = [];      // Remove all enemies
     world.level.newCoins();        // Generate new coins
     world.level.newPoisonBottles(); // Generate new poison bottles
+
     
     // Restart audio
     sounds.mainBackground.loop = true;
@@ -149,9 +144,6 @@ function restartGame() {
         console.error('Audio could not be played:', error);
     });
 }
-
-// Debug output for development
-console.log('Game initialized');
 
 /**
  * Event listener for keyboard input (keys pressed)

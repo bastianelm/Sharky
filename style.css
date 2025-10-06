@@ -35,7 +35,7 @@ canvas {
     height: 530px;
 }
 
-#mainMenu {
+#menu {
     border: 1px solid white;
 }
 
@@ -47,4 +47,12 @@ canvas {
 
 .littleGap {
     gap: 15px;
+}
+
+button{
+    width:20vw;
+}
+
+button img{
+    max-width:100%;
 }

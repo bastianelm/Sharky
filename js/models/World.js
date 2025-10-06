@@ -94,14 +94,6 @@ class World {
                 })
     }
 
-    waitForImage = (drawableObj) => {
-        if (drawableObj.img && drawableObj.img.complete) {
-            this.addToMap(drawableObj);
-        } else {
-            setTimeout(() => this.waitForImage(drawableObj), 50);
-        }
-    };
-
     drawWorld() {
         let wonGame = this.endbossSpawned === true && this.level.enemies[0].isDead === true && this.level.enemies[0].y === 0;
         let lostGame = this.character.isDead === true && this.character.y <= 0;
@@ -110,20 +102,9 @@ class World {
             window.stopGame();
             window.intervalIds = [];
             this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-            this.endScreen = new EndScreen(wonGame);
-            this.endScreen.objects.forEach(img => {
-                this.waitForImage(img);
-            });
             cancelAnimationFrame(this.gameLoop);
             this.character.reset();            
-            canvas.addEventListener("click", (event) => {
-                const rect = canvas.getBoundingClientRect();
-                const clickX = event.clientX - rect.left;
-                const clickY = event.clientY - rect.top;
-                if (typeof world.endScreen !== "undefined") { 
-                    world.endScreen.handleClick(clickX, clickY);
-                }
-            });
+            new ScreenManager(this.gameOver);
             return;
         }
         if(this.coinsBar.percentage !== 100){
