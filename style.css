@@ -1,8 +1,11 @@
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+@font-face { font-family: "Luckiest_Guy"; src: url("img/5.Font/Luckiest_Guy/Luckiest_Guy.ttf") format("truetype"); }
 
 body {
     height: 100vh;
@@ -47,6 +50,7 @@ canvas {
     width:50%;
     height:10%;
     border-radius:20px;
+    font-family:"Luckiest_Guy";
 }
 .centeredFlex {
     display: flex;
