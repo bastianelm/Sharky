@@ -36,7 +36,7 @@ class EndScreen {
     wonGame = {
         'img': 'img/6.Botones/Tittles/You win/Mesa de trabajo 1.png',
         'width' : 520,
-        'height' : 205,
+        'height' : 107,
     }
 
     /**
@@ -51,7 +51,11 @@ class EndScreen {
         'width' : 557,
         'height' : 106,
     }
-
+    homeButton = {
+        'img':'img/6.Botones/home.svg',
+        'width':150,
+        'height':100,
+    }
     /**
      * Creates a new EndScreen
      * 
@@ -80,7 +84,7 @@ class EndScreen {
         // Center horizontally
         screenImage.x = (canvas.width - screenImage.width) / 2;
         screenImage.y = 100; // Fixed Y position from top
-        
+
         // Create and configure Try Again button
         const reloadButton = new DrawableObject();
         reloadButton.loadImage(this.reloadButton.img);
@@ -90,10 +94,18 @@ class EndScreen {
         reloadButton.x = (canvas.width - reloadButton.width) / 2;
         // Position below the title image (with 20px spacing)
         reloadButton.y = screenImage.y + screenImage.height + 20;
-        
-        // Add both objects to the array
-        // Index 0: Title image, Index 1: Try Again button
-        this.objects.push(screenImage, reloadButton);
+
+        //Create and configutare home image
+        const homeButton = new DrawableObject();
+        homeButton.loadImage(this.homeButton.img);
+        homeButton.width = this.homeButton.width;
+        homeButton.height = this.homeButton.height;
+        homeButton.x = (canvas.width - homeButton.width) / 2;
+        homeButton.y = reloadButton.y + reloadButton.height + 20;
+
+        // Add objects
+
+        this.objects.push(screenImage, reloadButton, homeButton);
     }
 
     /**
