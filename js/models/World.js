@@ -124,6 +124,18 @@ class World {
                     world.endScreen.handleClick(clickX, clickY);
                 }
             });
+            canvas.addEventListener("mousemove", (event) => {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+            
+                const hoverX = (event.clientX - rect.left) * scaleX;
+                const hoverY = (event.clientY - rect.top) * scaleY;
+            
+                if (typeof world.endScreen !== "undefined") {
+                    world.endScreen.handleHover(hoverX, hoverY);
+                }
+            });
             return;
         }
         if(this.coinsBar.percentage !== 100){

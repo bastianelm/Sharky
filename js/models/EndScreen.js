@@ -154,4 +154,22 @@ class EndScreen {
            }
         }
     }
+    handleHover(hoverX, hoverY) {
+        const buttons = [this.objects[1], this.objects[2]]; // Reload + Home
+        let hoveringAny = false;
+    
+        for (const btn of buttons) {
+            if (
+                hoverX >= btn.x &&
+                hoverX <= btn.x + btn.width &&
+                hoverY >= btn.y &&
+                hoverY <= btn.y + btn.height
+            ) {
+                hoveringAny = true;
+                break;
+            }
+        }
+    
+        canvas.style.cursor = hoveringAny ? "pointer" : "default";
+    }    
 }
