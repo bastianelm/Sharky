@@ -23,9 +23,12 @@ body {
     justify-content: center;
     background: url("img/3. Background/Layers/5. Water/D1.png") no-repeat center center;
     background-size: cover;
+    color:white;
+    font-family:"Luckiest_Guy";
 }
 button{
     cursor:pointer;
+    font-family:"Luckiest_Guy";
 }
 .screen{
     background:#2E276F;
@@ -57,7 +60,6 @@ canvas {
     width:50%;
     height:100px;
     border-radius:20px;
-    font-family:"Luckiest_Guy";
 }
 .centeredFlex {
     display: flex;
