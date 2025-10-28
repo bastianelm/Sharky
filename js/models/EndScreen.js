@@ -109,51 +109,29 @@ class EndScreen {
     }
 
     /**
-     * Handles mouse clicks on the EndScreen
-     * 
+     * Handles mouse clicks on the EndScreen.
+     *
      * @method handleClick
-     * @param {number} clickX - X coordinate of the mouse click
-     * @param {number} clickY - Y coordinate of the mouse click
+     * @param {number} clickX - X coordinate of the mouse click relative to the canvas.
+     * @param {number} clickY - Y coordinate of the mouse click relative to the canvas.
      * @description
-     * - Checks if click is within the Try Again button bounds
-     * - Uses restartGame() for clean restart with audio management
-     * - Fallback to manual initialization if restartGame() is not available
-     * - Resets level objects (enemies, coins, poison bottles)
+     * Checks whether the user clicked within the bounds of the "Try Again" button.
+     * If so, it calls {@link restartGame} to restart the game.
      */
-    handleClick(clickX, clickY,) {
-        // Try Again button is at index 1 in the objects array
+
+    handleClick(clickX, clickY) {
         const reloadButton = this.objects[1];
-        
-        // Collision detection: Is the click within the button area?
+    
         if (
-            clickX >= reloadButton.x &&                           // Left of button
-            clickX <= reloadButton.x + reloadButton.width &&     // Right of button  
-            clickY >= reloadButton.y &&                           // Above button
-            clickY <= reloadButton.y + reloadButton.height        // Below button
+            clickX >= reloadButton.x &&
+            clickX <= reloadButton.x + reloadButton.width &&
+            clickY >= reloadButton.y &&
+            clickY <= reloadButton.y + reloadButton.height
         ) {
-           // Primary approach: use restartGame() (with audio management)
-           if (typeof restartGame === 'function') {
-               restartGame();
-           } else {
-               // Fallback in case restartGame() is not available
-               console.warn('restartGame() function not found, using fallback');
-               
-               // Manual initialization
-               init();
-               world.level.enemies = [];          // Remove all enemies
-               world.level.newCoins();           // Generate new coins  
-               world.level.newPoisonBottles();   // Generate new poison bottles
-               
-               // Manually restart audio (since init() alone is not enough)
-               if (sounds && sounds.mainBackground) {
-                   sounds.mainBackground.loop = true;
-                   sounds.mainBackground.play().catch(error => {
-                       console.error('Audio could not be played:', error);
-                   });
-               }
-           }
+            restartGame();
         }
     }
+    
     handleHover(hoverX, hoverY) {
         const buttons = [this.objects[1], this.objects[2]]; // Reload + Home
         let hoveringAny = false;
