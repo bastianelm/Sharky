@@ -121,6 +121,7 @@ class EndScreen {
 
     handleClick(clickX, clickY) {
         const reloadButton = this.objects[1];
+        const homeButton = this.objects[2];
     
         if (
             clickX >= reloadButton.x &&
@@ -130,6 +131,18 @@ class EndScreen {
         ) {
             restartGame();
         }
+
+        if (
+            clickX >= homeButton.x &&
+            clickX <= homeButton.x + reloadButton.width &&
+            clickY >= homeButton.y &&
+            clickY <= homeButton.y + reloadButton.height
+
+        ) {
+            location.reload();
+        }
+
+
     }
     
     handleHover(hoverX, hoverY) {
