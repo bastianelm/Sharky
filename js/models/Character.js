@@ -152,11 +152,19 @@ class Character extends MoveableObject {
                 if (this.world.keyboard.UP && this.y > 0) {
                     this.moveUp();
                 }
-                if (this.world.keyboard.SPACE && this.poisonBottles > 0 && !this.otherDirection && this.canAttack){
+
+                //bubbleAttack
+                if(this.world.keyboard.SPACE && this.poisonBottles > 0 && this.canAttack){
                     this.sleeping = false;
                     this.canAttack = false;
                     this.attack = true;
-                    let bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
+                    let bubble;
+                    if(!this.otherDirection){
+                        bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
+                    }else{
+                        bubble = new Bubble(this.x - this.width - this.world.cameraX, this.y + this.height/2);
+                    }
+                    console.log(bubble);
                     this.bubbles.push(bubble);
                     this.world.addToMap(this.bubbles[this.bubbles.length-1]);
                     this.poisonBottles--;

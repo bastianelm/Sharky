@@ -34,7 +34,7 @@ function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
-    debugger
+
     // Create audio object only once, if it doesn't exist yet
     // Prevents multiple audio instances on restart
     if (!sounds) {

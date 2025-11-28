@@ -162,7 +162,7 @@ class World {
      * drawWorld => drawas the world, manages bars (like coinBar for example), creates enemies and endboss
      */
     drawWorld() {
-        let wonGame = this.endbossSpawned === true && this.level.enemies[0].isDead === true && this.level.enemies[0].y === 0;
+        let wonGame = this.endbossSpawned === true && this.level.enemies[0].isDead === true && this.level.enemies[0].y <= 0;
         let lostGame = this.character.isDead === true && this.character.y <= 0;
         this.gameOver = wonGame || lostGame;
 

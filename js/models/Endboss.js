@@ -3,6 +3,7 @@ class Endboss extends MoveableObject {
     width = 200;
     height = 200;
     lives = 6000;
+    attackTime = 0;
 
     IMAGE_INTRODUCE = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
@@ -75,15 +76,6 @@ class Endboss extends MoveableObject {
             this.moveLeft();
         }
     }
-
-    /**
-     * Plays the attack animation.
-     * @returns {void}
-     */
-    attack() {
-        this.playAnimation(this.IMAGE_ATTACK);
-    }
-
     /**
      * Handles movement and attack behavior over time.
      * @returns {void}
@@ -94,8 +86,11 @@ class Endboss extends MoveableObject {
                 clearInterval(this.moveInterval);
                 return;
             }
+            this.attackTime += 200;
             this.followCharacter();
-            this.attack();
+            if(this.attackTIme % 1000 === 0){
+                this.playAnimation(this.IMAGE_ATTACK);
+            }
         }, 200);
     }
 
@@ -104,7 +99,7 @@ class Endboss extends MoveableObject {
      */
     constructor() {
         super();
-        this.attack = this.attack.bind(this);
+        //this.attack = this.attack.bind(this);
         this.loadImage(this.IMAGE_INTRODUCE[0]);
         this.loadImages(this.IMAGE_INTRODUCE);
         this.loadImages(this.IMAGE_SWIMMING);
