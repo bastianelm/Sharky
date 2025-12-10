@@ -48,58 +48,48 @@ class Endboss extends MoveableObject {
         'img/2.Enemy/3 Final Enemy/Dead/dead2.png'
     ];
 
-    /**
-     * @param {number} toleranceX - Horizontal tolerance in pixels
-     * @param {number} toleranceY - Vertical tolerance in pixels
-     * @returns {boolean} True if Endboss is within distance of character
-     */
     isLowDistance(toleranceX, toleranceY) {
-        const lowX = this.x === world.character.x - toleranceX;
-        const lowY = this.y === world.character.y - toleranceY;
-        return lowX && lowY;
+        const dx = Math.abs(this.x - world.character.x);
+        const dy = Math.abs(this.y - world.character.y);
+        return dx < toleranceX && dy < toleranceY;
     }
 
-    /**
-     * Moves the Endboss toward the player based on current position and lives.
-     * @returns {void}
-     */
     followCharacter() {
         const tolerance = this.lives >= 2000 ? 250 : 50;
-        if (this.y < world.character.y - tolerance) this.moveDown();
-        else this.moveUp();
+
+        if (this.y < world.character.y - tolerance) {
+            this.y += this.speed;
+        } else if (this.y > world.character.y + tolerance) {
+            this.y -= this.speed;
+        }
 
         if (this.x < world.character.x - tolerance) {
             this.otherDirection = true;
-            this.moveRight();
-        } else {
+            this.x += this.speed;
+        } else if (this.x > world.character.x + tolerance) {
             this.otherDirection = false;
-            this.moveLeft();
+            this.x -= this.speed;
         }
     }
-    /**
-     * Handles movement and attack behavior over time.
-     * @returns {void}
-     */
+
     move() {
         this.moveInterval = setInterval(() => {
             if (this.isDead) {
                 clearInterval(this.moveInterval);
                 return;
             }
+
             this.attackTime += 200;
             this.followCharacter();
-            if(this.attackTIme % 1000 === 0){
+
+            if (this.attackTime % 1000 === 0) {
                 this.playAnimation(this.IMAGE_ATTACK);
             }
         }, 200);
     }
 
-    /**
-     * Initializes the Endboss with all assets loaded and behavior started.
-     */
     constructor() {
         super();
-        //this.attack = this.attack.bind(this);
         this.loadImage(this.IMAGE_INTRODUCE[0]);
         this.loadImages(this.IMAGE_INTRODUCE);
         this.loadImages(this.IMAGE_SWIMMING);

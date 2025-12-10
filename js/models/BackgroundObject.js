@@ -6,4 +6,4 @@ class BackgroundObject extends DrawableObject {
         this.x = x;
         this.y = 480-this.height;
     }
-}
+}juio
