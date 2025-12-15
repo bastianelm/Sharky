@@ -4,6 +4,8 @@ class Endboss extends MoveableObject {
     height = 200;
     lives = 6000;
     attackTime = 0;
+    animationFrameCounter = 0;
+    animationFrameSkip = 5;
 
     IMAGE_INTRODUCE = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
@@ -48,45 +50,42 @@ class Endboss extends MoveableObject {
         'img/2.Enemy/3 Final Enemy/Dead/dead2.png'
     ];
 
-    isLowDistance(toleranceX, toleranceY) {
-        const dx = Math.abs(this.x - world.character.x);
-        const dy = Math.abs(this.y - world.character.y);
-        return dx < toleranceX && dy < toleranceY;
-    }
+    playAnimation(images) {
+        this.animationFrameCounter++;
+        if (this.animationFrameCounter % this.animationFrameSkip === 0) {
+            super.playAnimation(images);
+        }
+    }    
 
     followCharacter() {
-        const tolerance = this.lives >= 2000 ? 250 : 50;
-
-        if (this.y < world.character.y - tolerance) {
-            this.y += this.speed;
-        } else if (this.y > world.character.y + tolerance) {
-            this.y -= this.speed;
+        if (this.y < world.character.y && this.y < world.canvas.height - this.height - world.uiArea) {
+            this.moveDown();
+        } else if (this.y > world.character.y) {
+            this.moveUp();
         }
-
-        if (this.x < world.character.x - tolerance) {
+        this.playAnimation(this.IMAGE_ATTACK);
+        /*
+        if (this.x < world.character.x) {
             this.otherDirection = true;
-            this.x += this.speed;
-        } else if (this.x > world.character.x + tolerance) {
+            this.moveRight();
+        } else if (this.x > world.character.x) {
             this.otherDirection = false;
-            this.x -= this.speed;
+            this.moveLeft();
         }
+        */
     }
 
     move() {
+        // Starte ein Intervall, das alle 50ms aufgerufen wird (für flüssige Bewegung)
         this.moveInterval = setInterval(() => {
             if (this.isDead) {
                 clearInterval(this.moveInterval);
                 return;
             }
-
-            this.attackTime += 200;
             this.followCharacter();
-
-            if (this.attackTime % 1000 === 0) {
-                this.playAnimation(this.IMAGE_ATTACK);
-            }
-        }, 200);
+        }, 50); // 50ms für flüssige Bewegung
     }
+    
 
     constructor() {
         super();
