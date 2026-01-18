@@ -1,6 +1,5 @@
 class MoveableObject extends DrawableObject{
-    speed;
-    otherDirection = false;
+    speed; //movementspeed
     introLoopIteration = 0;
     lives = 1000;
     isHurt = false;
@@ -11,6 +10,18 @@ class MoveableObject extends DrawableObject{
     attackLoopIteration = 0;
     sleeping = false;
     swimming = true;
+    bubbles = [];
+
+    bubbles([manageBubblesArrayContent]){d ya<
+        if (manageBubblesArrayContent !== null && addOrPush !== undefined){
+            addOrPush === "push" ? bubbles.push() : bubblers.pull();
+        }
+
+    }
+
+    move(){
+
+    }
 
     renderFlippedImage(ctx){
         ctx.save();
@@ -129,5 +140,6 @@ class MoveableObject extends DrawableObject{
     constructor(){
         super();
         window.setStoppableInterval(() => this.animate(), 150);
+        this.move();
     }
 }

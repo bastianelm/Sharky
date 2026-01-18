@@ -57,11 +57,22 @@ class Endboss extends MoveableObject {
         }
     }    
 
+    shootBubble(){
+        let bubble;
+        bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
+        this.world.addToMap(bubble);
+    }
+
     followCharacter() {
-        if (this.y < world.character.y && this.y < world.canvas.height - this.height - world.uiArea) {
+        this.shootBubble();
+        if (this.y < this.world.character.y && this.y < this.world.canvas.height - this.height - this.world.uiArea) {
             this.moveDown();
-        } else if (this.y > world.character.y) {
+        }
+        else if (this.y > this.world.character.y) {
             this.moveUp();
+        }
+        if(this.lives<= 3000){
+            this.x > this.world.character.x ? this.moveLeft() : this.moveRight();
         }
         this.playAnimation(this.IMAGE_ATTACK);
         /*
@@ -89,6 +100,7 @@ class Endboss extends MoveableObject {
 
     constructor() {
         super();
+        this.world = world;
         this.loadImage(this.IMAGE_INTRODUCE[0]);
         this.loadImages(this.IMAGE_INTRODUCE);
         this.loadImages(this.IMAGE_SWIMMING);
