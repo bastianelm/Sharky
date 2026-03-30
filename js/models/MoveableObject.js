@@ -1,5 +1,5 @@
 class MoveableObject extends DrawableObject{
-    speed; //movementspeed
+    speed;
     introLoopIteration = 0;
     lives = 1000;
     isHurt = false;
@@ -12,7 +12,7 @@ class MoveableObject extends DrawableObject{
     swimming = true;
     bubbles = [];
 
-    bubbles([manageBubblesArrayContent]){d ya<
+    bubbles([manageBubblesArrayContent]){
         if (manageBubblesArrayContent !== null && addOrPush !== undefined){
             addOrPush === "push" ? bubbles.push() : bubblers.pull();
         }
