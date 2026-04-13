@@ -164,7 +164,6 @@ class Character extends MoveableObject {
                     }else{
                         bubble = new Bubble(this.x - this.width - this.world.cameraX, this.y + this.height/2);
                     }
-                    console.log(bubble);
                     this.bubbles.push(bubble);
                     this.world.addToMap(this.bubbles[this.bubbles.length-1]);
                     this.poisonBottles--;

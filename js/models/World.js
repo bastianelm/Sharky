@@ -162,10 +162,11 @@ class World {
      * drawWorld => drawas the world, manages bars (like coinBar for example), creates enemies and endboss
      */
     drawWorld() {
+        //gameover conditions
         let wonGame = this.endbossSpawned === true && this.level.enemies[0].isDead === true && this.level.enemies[0].y <= 0;
         let lostGame = this.character.isDead === true && this.character.y <= 0;
         this.gameOver = wonGame || lostGame;
-
+        //if game over
         if(this.gameOver){
             window.stopGame();
             window.intervalIds = [];
@@ -198,9 +199,10 @@ class World {
                 }
             });
             return;
-        }
-
-        if(this.coinsBar.percentage !== 100){
+        } else{
+            //code for running game goes here
+            console.log("game is running");
+              if(this.coinsBar.percentage !== 100){
             let enemyCreationInterval = 2.5;
             let now = performance.now();
             if((now - this.lastEnemyCreation) / 1000 >= enemyCreationInterval){
@@ -255,6 +257,9 @@ class World {
         if(!this.gameOver){
             this.gameLoop = requestAnimationFrame(() => this.drawWorld());
         }
+        }
+
+      
     }
 
 }

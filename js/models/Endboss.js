@@ -64,7 +64,6 @@ class Endboss extends MoveableObject {
     }
 
     followCharacter() {
-        this.shootBubble();
         if (this.y < this.world.character.y && this.y < this.world.canvas.height - this.height - this.world.uiArea) {
             this.moveDown();
         }
