@@ -85,15 +85,18 @@ class Endboss extends MoveableObject {
         */
     }
 
-    move() {
-        // Starte ein Intervall, das alle 50ms aufgerufen wird (für flüssige Bewegung)
+    /**
+     * decides over movement from endboss
+     * @param {number} microseconds determines the speed of the animation
+     */
+    move(microseconds) {
         this.moveInterval = setInterval(() => {
             if (this.isDead) {
                 clearInterval(this.moveInterval);
                 return;
             }
             this.followCharacter();
-        }, 50); // 50ms für flüssige Bewegung
+        }, microseconds);
     }
     
 
@@ -107,6 +110,6 @@ class Endboss extends MoveableObject {
         this.loadImages(this.IMAGE_DEATH);
         this.x = canvas.width - this.width;
         this.y = 0;
-        this.move();
+        this.move(150);
     }
 }
