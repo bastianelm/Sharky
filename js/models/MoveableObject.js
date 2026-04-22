@@ -11,14 +11,7 @@ class MoveableObject extends DrawableObject{
     sleeping = false;
     swimming = true;
     bubbles = [];
-
-    bubbles([manageBubblesArrayContent]){
-        if (manageBubblesArrayContent !== null && addOrPush !== undefined){
-            addOrPush === "push" ? bubbles.push() : bubblers.pull();
-        }
-        alert("use");
-    }
-
+    
     move(){
 
     }
