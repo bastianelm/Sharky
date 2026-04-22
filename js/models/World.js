@@ -168,16 +168,15 @@ class World {
         this.gameOver = wonGame || lostGame;
         //if game over
         if(this.gameOver){
+            cancelAnimationFrame(this.gameLoop);
+            this.character.reset(); 
             window.stopGame();
             window.intervalIds = [];
             this.ctx.clearRect(0, 0, canvas.width, canvas.height);
             this.endScreen = new EndScreen(wonGame);
             this.endScreen.objects.forEach(img => {
                 this.waitForImage(img);
-            });
-            cancelAnimationFrame(this.gameLoop);
-            this.character.reset();            
-
+            });           
             canvas.addEventListener("click", (event) => {
                 const rect = canvas.getBoundingClientRect();
                 const clickX = event.clientX - rect.left;

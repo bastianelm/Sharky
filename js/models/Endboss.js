@@ -8,10 +8,10 @@ class Endboss extends MoveableObject {
     animationFrameSkip = 5;
 
     IMAGE_INTRODUCE = [
-        'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
-        'img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
-        'img/2.Enemy/3 Final Enemy/1.Introduce/3.png',
-        'img/2.Enemy/3 Final Enemy/1.Introduce/4.png',
+        //'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
+        //'img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
+        //'img/2.Enemy/3 Final Enemy/1.Introduce/3.png',
+        //'img/2.Enemy/3 Final Enemy/1.Introduce/4.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/5.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/6.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/7.png',
@@ -110,6 +110,6 @@ class Endboss extends MoveableObject {
         this.loadImages(this.IMAGE_DEATH);
         this.x = canvas.width - this.width;
         this.y = 0;
-        this.move(150);
+        this.move(80);
     }
 }
