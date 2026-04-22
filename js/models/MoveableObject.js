@@ -16,7 +16,7 @@ class MoveableObject extends DrawableObject{
         if (manageBubblesArrayContent !== null && addOrPush !== undefined){
             addOrPush === "push" ? bubbles.push() : bubblers.pull();
         }
-
+        alert("use");
     }
 
     move(){
