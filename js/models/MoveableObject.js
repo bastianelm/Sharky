@@ -11,10 +11,6 @@ class MoveableObject extends DrawableObject{
     sleeping = false;
     swimming = true;
     bubbles = [];
-    
-    move(){
-
-    }
 
     renderFlippedImage(ctx){
         ctx.save();
@@ -133,6 +129,5 @@ class MoveableObject extends DrawableObject{
     constructor(){
         super();
         window.setStoppableInterval(() => this.animate(), 150);
-        this.move();
     }
 }
