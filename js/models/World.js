@@ -159,7 +159,7 @@ class World {
     };
 
     /**
-     * drawWorld => drawas the world, manages bars (like coinBar for example), creates enemies and endboss
+     * drawWorld => draws the world, manages bars (like coinBar for example), creates enemies and endboss
      */
     drawWorld() {
         //gameover conditions
