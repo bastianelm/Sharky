@@ -233,8 +233,8 @@ class World {
         this.ctx.translate(this.cameraX, 0); /** Kamera anwenden */
         this.addObjectsToMap(backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.poisonBottles);
         this.ctx.restore(); /** Zeichenkontext wiederherstellen */
         this.addToMap(this.healthBar);
