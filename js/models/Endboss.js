@@ -73,7 +73,7 @@ class Endboss extends MoveableObject {
         if(this.lives<= 3000){
             this.x > this.world.character.x ? this.moveLeft() : this.moveRight();
         }
-        this.playAnimation(this.IMAGE_ATTACK);
+        //this.playAnimation(this.IMAGE_ATTACK);
         /*
         if (this.x < world.character.x) {
             this.otherDirection = true;
