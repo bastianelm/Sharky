@@ -169,7 +169,7 @@ class World {
         //if game over
         if(this.gameOver){
             cancelAnimationFrame(this.gameLoop);
-            this.character.reset(); 
+            this.character.reset();
             window.stopGame();
             window.intervalIds = [];
             this.ctx.clearRect(0, 0, canvas.width, canvas.height);

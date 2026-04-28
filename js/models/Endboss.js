@@ -58,9 +58,16 @@ class Endboss extends MoveableObject {
     }    
 
     shootBubble(){
+        this.canAttack = false;
+        this.attack = true;
         let bubble;
-        bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
-        this.world.addToMap(bubble);
+        if(!this.otherDirection){
+            bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
+        }else{
+            bubble = new Bubble(this.x - this.width - this.world.cameraX, this.y + this.height/2);
+        }
+        this.bubbles.push(bubble);
+        this.world.addToMap(this.bubbles[this.bubbles.length-1]);
     }
 
     followCharacter() {
@@ -73,6 +80,7 @@ class Endboss extends MoveableObject {
         if(this.lives<= 3000){
             this.x > this.world.character.x ? this.moveLeft() : this.moveRight();
         }
+        this.shootBubble();
         //this.playAnimation(this.IMAGE_ATTACK);
         /*
         if (this.x < world.character.x) {
@@ -111,5 +119,13 @@ class Endboss extends MoveableObject {
         this.x = canvas.width - this.width;
         this.y = 0;
         this.move(80);
+    }
+    reset() {
+        this.reset();
+        this.lives = 6000;
+        this.isHurt = false;
+        this.isDead = false;
+        this.bubbles = [];
+        this.attack = false;
     }
 }
