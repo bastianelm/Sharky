@@ -40,9 +40,13 @@ function init(){
     if (!sounds) {
         sounds = {
             "mainBackground": new Audio("audio/underwater.mp3"),
-            "coinCollected": new Audio("audio/coinCollected.mp3");
+            "coinCollected": new Audio("audio/coinCollected.mp3"),
+            "bubbleShot": new Audio("audio/bubbleShot.mp3"),
+            "poisonCollected": new Audio("audio/collectedPoisonCoin.mp3"),
+            "enemyKilled" : new Audio("audio/enemyKilled.mp3"),
             "won": new Audio("audio/won.mp3"),
             "lose": new Audio("audio/lose.mp3"),
+            "buttonClicked": new Audio("audio/buttonClicked.mp3"),
         };
     }
     
