@@ -12,12 +12,6 @@ let world;
 /** @type {Keyboard} Keyboard input handler */
 let keyboard = new Keyboard();
 
-/** @type {Object.<string, HTMLAudioElement>} Audio objects for the game */
-let sounds;
-
-/** @type {HTMLElement} Sound control bar element */
-let soundBar;
-
 /**
  * Initializes the game - canvas, world and audio
  * This function is called on first start and every restart
@@ -25,8 +19,6 @@ let soundBar;
  * @function init
  * @description 
  * - Gets canvas reference and creates world
- * - Creates audio objects (only on first time)
- * - Sets sound button event listener (prevents duplicates)
  * - Initializes all game objects
  */
 function init(){
@@ -34,38 +26,6 @@ function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
-
-    // Create audio object only once, if it doesn't exist yet
-    // Prevents multiple audio instances on restart
-    if (!sounds) {
-        sounds = {
-            "mainBackground": new Audio("audio/underwater.mp3"),
-            "coinCollected": new Audio("audio/coinCollected.mp3"),
-            "bubbleShot": new Audio("audio/bubbleShot.mp3"),
-            "poisonCollected": new Audio("audio/collectedPoisonCoin.mp3"),
-            "enemyKilled" : new Audio("audio/enemyKilled.mp3"),
-            "won": new Audio("audio/won.mp3"),
-            "lose": new Audio("audio/lose.mp3"),
-            "buttonClicked": new Audio("audio/buttonClicked.mp3"),
-        };
-    }
-    
-    // Get DOM references for sound controls
-    soundBar = document.getElementById('soundBar');
-    const soundButton = document.getElementById('soundButton');
-    
-    // Set event listener only once to avoid duplicates
-    // The data-attribute prevents multiple event listener assignments
-    if (soundButton && sounds.mainBackground && !soundButton.hasAttribute('data-listener-set')) {
-        soundButton.onclick = () => {
-            // Toggle mute/unmute
-            sounds.mainBackground.muted = !sounds.mainBackground.muted;
-            // Change icon accordingly
-            soundButton.innerHTML = sounds.mainBackground.muted ? '🔇' : '🔊';
-        };
-        // Mark that the listener has been set
-        soundButton.setAttribute('data-listener-set', 'true');
-    }
 }
 
 /**
@@ -92,33 +52,13 @@ function toggleElementsDisplay(array) {
  * - Switches from menu to game view
  */
 function startNewGame() {
-    // Stop previous audio if it's running
-    // Important: pause() stops playback, currentTime = 0 resets to beginning
-    if (sounds && sounds.mainBackground) {
-        sounds.mainBackground.pause();
-        sounds.mainBackground.currentTime = 0;
-    }
     
     // Initialize game
     init();
-    
-    // Set audio settings and start
-    sounds.mainBackground.loop = true; // Infinite loop
-    // .catch() handles errors (e.g. when browser blocks audio)
-    sounds.mainBackground.play().catch(error => {
-        console.error('Audio could not be played:', error);
-    });
-    
-    // Switch UI elements: hide menu, show canvas and sound bar
     const mainMenu = document.getElementById('mainMenu');
     const canvas = document.getElementById('canvas');
     
-    // Ensure soundBar is defined (fallback)
-    if (!soundBar) {
-        soundBar = document.getElementById('soundBar');
-    }
-    
-    toggleElementsDisplay([canvas, mainMenu, soundBar]);
+    toggleElementsDisplay([canvas, mainMenu]);
 }
 
 /**
@@ -135,9 +75,9 @@ function startNewGame() {
  */
 function restartGame() {
     // Reset audio - important for clean restart
-    if (sounds && sounds.mainBackground) {
-        sounds.mainBackground.pause();
-        sounds.mainBackground.currentTime = 0;
+    if (window.sounds && window.sounds.mainBackground) {
+        window.sounds.mainBackground.pause();
+        window.sounds.mainBackground.currentTime = 0;
     }
     
     // Reinitialize game
@@ -149,8 +89,8 @@ function restartGame() {
     world.level.newPoisonBottles(); // Generate new poison bottles
     
     // Restart audio
-    sounds.mainBackground.loop = true;
-    sounds.mainBackground.play().catch(error => {
+    window.sounds.mainBackground.loop = true;
+    window.sounds.mainBackground.play().catch(error => {
         console.error('Audio could not be played:', error);
     });
 }

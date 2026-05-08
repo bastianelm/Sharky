@@ -28,8 +28,8 @@
     <script defer src="game.js"></script>
 </head>
 <body style="display:flex; justify-content:center; align-items:center; flex-direction:column">
-    <div id="soundBar" class="hidden">
-        <button id="soundButton" style="width:60px;height:60px;"  title="Sound an">&#x1F50A</button>
+    <div id="soundBar">
+        <button id="soundButton" style="width:60px;height:60px;"  title="Sound an">🔇</button>
     </div>
     <div class="screen centeredFlex littleGap" id="mainMenu">
         <button id="startButton" onclick="startNewGame()">Start</button>
@@ -40,14 +40,46 @@
 <script>
         canvas.width = 720;
         canvas.height = 530;
+        window.soundBar = document.getElementById('soundBar');
         window.intervalIds = [];
         window.setStoppableInterval = (fn, time)=>{
             let id = setInterval(fn, time);
             window.intervalIds.push(id);
-            //console.trace();
         }
         window.stopGame = ()=>{
             window.intervalIds.forEach(clearInterval);
         };
+        window.sounds = {
+                "mainBackground": new Audio("audio/underwater.mp3"),
+                "coinCollected": new Audio("audio/coinCollected.mp3"),
+                "bubbleShot": new Audio("audio/bubbleShot.mp3"),
+                "poisonCollected": new Audio("audio/collectedPoisonCoin.mp3"),
+                "enemyKilled" : new Audio("audio/enemyKilled.mp3"),
+                "won": new Audio("audio/won.mp3"),
+                "lose": new Audio("audio/lose.mp3"),
+                "buttonClicked": new Audio("audio/buttonClicked.mp3"),
+        };
+        // Get DOM references for sound controls
+        const soundBar = document.getElementById('soundBar');
+        const soundButton = document.getElementById('soundButton');
+        window.sounds.mainBackground.muted=true;
+        soundButton.onclick = () => {
+            //play sound
+            window.sounds.mainBackground.play();
+            // Toggle mute/unmute
+            window.sounds.mainBackground.muted ? window.sounds.mainBackground.muted = false : window.sounds.mainBackground.muted = true;
+            // Change icon accordingly
+            soundButton.innerHTML = sounds.mainBackground.muted ? '🔇' : '🔊';
+        };
+        // Mark that the listener has been set
+        soundButton.setAttribute('data-listener-set', 'true');
+        // Stop previous audio if it's running
+        // Important: pause() stops playback, currentTime = 0 resets to beginning
+        if (sounds && sounds.mainBackground) {
+            sounds.mainBackground.pause();
+            sounds.mainBackground.currentTime = 0;
+        }
+        // Set audio settings and start
+        sounds.mainBackground.loop = true; // Infinite loop
 </script>
 </html>

@@ -74,7 +74,7 @@ class EndScreen {
         // Select title image based on game outcome
         const selectedImage = wonGame ? this.wonGame : this.lostGame;
         // Select sound based on game outcome
-        const selectedSound = wonGame ? sounds.won : sounds.lose;
+        const selectedSound = wonGame ? window.sounds.won : window.sounds.lose;
         selectedSound.play();
         // Create and configure title image
         const screenImage = new DrawableObject();
