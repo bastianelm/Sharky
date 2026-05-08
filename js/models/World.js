@@ -126,6 +126,7 @@ class World {
         this.level.coins.forEach(coin => {
             if(this.character.isColliding(coin)){
                 this.character.coins++;
+                window.sounds.coinCollected.play();
                 this.coinsBar.setPercentage(this.character.coins/(9/100));
                 let index = this.level.coins.indexOf(coin);
                 if (index !== -1) {
@@ -137,6 +138,7 @@ class World {
         this.level.poisonBottles.forEach(bottle=>{
             if(this.character.isColliding(bottle)){
                 this.character.poisonBottles++;
+                window.sounds.poisonCollected.play();
                 this.bubblesBar.setPercentage(this.character.poisonBottles/(4/100));
                 let index = this.level.poisonBottles.indexOf(bottle);
                 if (index !== -1) {

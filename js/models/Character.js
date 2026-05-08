@@ -159,6 +159,7 @@ class Character extends MoveableObject {
                     this.canAttack = false;
                     this.attack = true;
                     let bubble;
+                    window.sounds.bubbleShot.play();
                     if(!this.otherDirection){
                         bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
                     }else{
