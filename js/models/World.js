@@ -174,6 +174,7 @@ class World {
             this.character.reset();
             window.stopGame();
             window.intervalIds = [];
+            window.stopSounds();
             this.ctx.clearRect(0, 0, canvas.width, canvas.height);
             this.endScreen = new EndScreen(wonGame);
             this.endScreen.objects.forEach(img => {

@@ -57,6 +57,12 @@
                 "won": new Audio("audio/won.mp3"),
                 "lose": new Audio("audio/lose.mp3"),
         };
+        window.stopSounds = () => {
+            Object.values(window.sounds).forEach(sound => {
+                sound.pause();
+                sound.currentTime = 0;
+            });
+        };
         // Get DOM references for sound controls
         const soundBar = document.getElementById('soundBar');
         const soundButton = document.getElementById('soundButton');
