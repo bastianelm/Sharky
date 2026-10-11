@@ -40,7 +40,8 @@
 <script>
         canvas.width = 720;
         canvas.height = 530;
-        window.soundBar = document.getElementById('soundBar');
+        const soundBar = document.getElementById('soundBar');
+        const soundButton = document.getElementById('soundButton');
         window.intervalIds = [];
         window.setStoppableInterval = (fn, time)=>{
             let id = setInterval(fn, time);
@@ -57,18 +58,32 @@
                 "won": new Audio("audio/won.mp3"),
                 "lose": new Audio("audio/lose.mp3"),
         };
-        // Get DOM references for sound controls
-        const soundBar = document.getElementById('soundBar');
-        const soundButton = document.getElementById('soundButton');
-        window.sounds.mainBackground.muted=true;
+        Object.values(window.sounds).forEach(sound => {
+            sound.muted = true;
+        });
         soundButton.onclick = () => {
-            //play sound
-            window.sounds.mainBackground.play();
-            // Toggle mute/unmute
-            window.sounds.mainBackground.muted ? window.sounds.mainBackground.muted = false : window.sounds.mainBackground.muted = true;
-            // Change icon accordingly
-            soundButton.innerHTML = sounds.mainBackground.muted ? '🔇' : '🔊';
-        };
+            // Toggle mute and unmute
+            const soundValues = Object.values(window.sounds);
+            soundValues.forEach((sound, index, array) => {
+                console.log(index);
+                console.log(array);
+                console.log(sound);
+                if(sound.muted === true){
+                    sound.muted = false;
+                } else{
+                    sound.muted = true;
+                }
+                if(index === array.length-1){
+                    if(sounds.mainBackground.muted)
+                        soundButton.innerHTML = '🔇';
+                    else{
+                        soundButton.innerHTML = '🔊';
+                        window.sounds.mainBackground.play();
+                        window.sounds.mainBackground.loop = true;
+                    }
+                }
+            });
+        }
         // Mark that the listener has been set
         soundButton.setAttribute('data-listener-set', 'true');
         // Stop previous audio if it's running
