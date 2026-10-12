@@ -42,13 +42,31 @@
         canvas.height = 530;
         const soundBar = document.getElementById('soundBar');
         const soundButton = document.getElementById('soundButton');
-        window.intervalIds = [];
-        window.setStoppableInterval = (fn, time)=>{
-            let id = setInterval(fn, time);
-            window.intervalIds.push(id);
-        }
-        window.stopGame = ()=>{
-            window.intervalIds.forEach(clearInterval);
+        window.intervals = [];
+
+        window.setStoppableInterval = (fn, time) => {
+            const interval = { fn, time, id: setInterval(fn, time) };
+            window.intervals.push(interval);
+        };
+
+        window.pauseGame = () => {
+            window.intervals.forEach(interval => {
+                clearInterval(interval.id);
+                interval.id = null;
+            });
+        };
+
+        window.resumeGame = () => {
+            window.intervals.forEach(interval => {
+                if (interval.id === null) {
+                    interval.id = setInterval(interval.fn, interval.time);
+                }
+            });
+        };
+
+        window.stopGame = () => {
+            window.intervals.forEach(interval => clearInterval(interval.id));
+            window.intervals = [];
         };
         window.sounds = {
                 "mainBackground": new Audio("audio/underwater.mp3"),
