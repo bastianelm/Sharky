@@ -68,6 +68,17 @@
             window.intervals.forEach(interval => clearInterval(interval.id));
             window.intervals = [];
         };
+        const portraitQuery = window.matchMedia(
+            "(orientation: portrait) and (pointer: coarse)"
+        );
+
+        portraitQuery.addEventListener("change", event => {
+            if (event.matches) {
+                window.pauseGame();
+            } else {
+                window.resumeGame();
+            }
+        });
         window.sounds = {
                 "mainBackground": new Audio("audio/underwater.mp3"),
                 "coinCollected": new Audio("audio/coinCollected.mp3"),
