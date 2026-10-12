@@ -128,7 +128,7 @@ class World {
                 this.character.coins++;
                 window.sounds.coinCollected.currentTime = 0;
                 window.sounds.coinCollected.play();
-                this.coinsBar.setPercentage(this.character.coins/(9/100));
+                this.coinsBar.setPercentage(this.character.coins/(3/100));
                 let index = this.level.coins.indexOf(coin);
                 if (index !== -1) {
                     this.level.coins.splice(index, 1);
