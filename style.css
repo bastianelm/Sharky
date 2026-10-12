@@ -70,25 +70,15 @@ canvas {
     gap: 15px;
 }
 
-#startButton,
-#verticalMode {
-    display: block;
-}
-
-/* Landscape – mobile devices (max‑width 1024 px) */
-@media only screen
-       and (orientation: landscape)
-       and (max-width: 1024px)
-       and (pointer: coarse) {
+/*wide touchscreens*/
+@media (orientation: landscape) and (pointer:coarse){
     #startButton { display: block !important; }
-    #verticalMode { display: none  !important; }
+    #verticalModeMessage { display: none  !important; }
 }
 
-/* Portrait – mobile devices (max‑width 1024 px) */
-@media only screen
-       and (orientation: portrait)
-       and (max-width: 1024px)
-       and (pointer: coarse) {
-    #startButton { display: none  !important; }
-    #verticalMode { display: block !important; }
+/* small touchscreens */
+@media (orientation: portrait) and (pointer:coarse){
+    #startButton { display: none !important; }
+    #verticalModeMessage { display: block  !important; }
+    canvas {display: none;}
 }
