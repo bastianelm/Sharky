@@ -90,22 +90,21 @@
         Object.values(window.sounds).forEach(sound => {
             sound.muted = true;
         });
-        soundButton.onclick = () => {
-            // Toggle mute and unmute
+        localStorage.soundButtonStatus = false;
+soundButton.onclick = () => {
             const soundValues = Object.values(window.sounds);
             soundValues.forEach((sound, index, array) => {
-                console.log(index);
-                console.log(array);
-                console.log(sound);
                 if(sound.muted === true){
                     sound.muted = false;
                 } else{
                     sound.muted = true;
                 }
                 if(index === array.length-1){
-                    if(sounds.mainBackground.muted)
+                    if(window.sounds.mainBackground.muted){
                         soundButton.innerHTML = '🔇';
-                    else{
+                        localStorage.setItem("soundButtonStatus", false);
+                    }else{
+                        localStorage.setItem("soundButtonStatus", true);
                         soundButton.innerHTML = '🔊';
                         window.sounds.mainBackground.play();
                         window.sounds.mainBackground.loop = true;
@@ -117,7 +116,7 @@
         soundButton.setAttribute('data-listener-set', 'true');
         // Stop previous audio if it's running
         // Important: pause() stops playback, currentTime = 0 resets to beginning
-        if (sounds && sounds.mainBackground) {
+        if (sounds && window.sounds.mainBackground) {
             sounds.mainBackground.pause();
             sounds.mainBackground.currentTime = 0;
         }
