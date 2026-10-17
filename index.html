@@ -87,6 +87,21 @@
                 "won": new Audio("audio/won.mp3"),
                 "lose": new Audio("audio/lose.mp3"),
         };
+        /**
+         * returns the local storage value of SoundButtonStatus as a boolean 
+        **/
+        function getSoundButtonStatus(){
+            return JSON.parse(localStorage.getItem("soundButtonStatus"));
+        };
+        /**
+        * Toggles the sound button status and saves the new state to local storage.
+        * If the current status is null or false, it switches to true; otherwise, it switches to false.
+         */
+        function toggleSoundButtonStatus() {
+            let currentStatus = getSoundButtonStatus();
+            let newStatus = (currentStatus === null || currentStatus === false) ? true : !currentStatus;
+            localStorage.setItem("soundButtonStatus", JSON.stringify(newStatus));
+        }
         Object.values(window.sounds).forEach(sound => {
             sound.muted = true;
         });
