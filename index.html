@@ -89,53 +89,61 @@
         };
         /**
          * returns the local storage value of SoundButtonStatus as a boolean 
-        **/
+         **/
         function getSoundButtonStatus(){
             return JSON.parse(localStorage.getItem("soundButtonStatus"));
         };
         /**
-        * Toggles the sound button status and saves the new state to local storage.
-        * If the current status is null or false, it switches to true; otherwise, it switches to false.
+         * Toggles the sound button status and saves the new state to local storage.
+         * If the current status is null or false, it switches to true; otherwise, it switches to false.
          */
         function toggleSoundButtonStatus() {
             let currentStatus = getSoundButtonStatus();
             let newStatus = (currentStatus === null || currentStatus === false) ? true : !currentStatus;
             localStorage.setItem("soundButtonStatus", JSON.stringify(newStatus));
         }
-        Object.values(window.sounds).forEach(sound => {
-            sound.muted = true;
-        });
-        localStorage.soundButtonStatus = false;
-soundButton.onclick = () => {
-            const soundValues = Object.values(window.sounds);
-            soundValues.forEach((sound, index, array) => {
-                if(sound.muted === true){
-                    sound.muted = false;
-                } else{
-                    sound.muted = true;
-                }
-                if(index === array.length-1){
-                    if(window.sounds.mainBackground.muted){
-                        soundButton.innerHTML = '🔇';
-                        localStorage.setItem("soundButtonStatus", false);
-                    }else{
-                        localStorage.setItem("soundButtonStatus", true);
-                        soundButton.innerHTML = '🔊';
-                        window.sounds.mainBackground.play();
-                        window.sounds.mainBackground.loop = true;
-                    }
-                }
+        function setSoundsToSoundButtonStatus(){
+            let status = getSoundButtonStatus();
+            let isMuted = (status === null || status === false) ? true : false;
+            Object.values(window.sounds).forEach(sound => {
+                sound.muted = isMuted;
             });
         }
+        setSoundsToSoundButtonStatus();
+        /**
+         *sets sound icon
+         */
+        function setSoundIcon(){
+            console.log("sets sound icon");
+            getSoundButtonStatus() === true ? soundButton.innerText = '🔇' : soundButton.innerText = '🔊';
+        }
+        setSoundIcon();
+
+        soundButton.onclick = () => {
+            toggleSoundButtonStatus();
+            setSoundsToSoundButtonStatus();
+            setSoundIcon();
+
+            if (getSoundButtonStatus() === true) {
+                window.sounds.mainBackground.play().catch(e => console.log(e));
+                window.sounds.mainBackground.loop = true;
+            } else {
+                window.sounds.mainBackground.pause();
+            }
+
+            console.log(getSoundButtonStatus());
+        }
+
+        console.log(getSoundButtonStatus());
         // Mark that the listener has been set
         soundButton.setAttribute('data-listener-set', 'true');
         // Stop previous audio if it's running
         // Important: pause() stops playback, currentTime = 0 resets to beginning
-        if (sounds && window.sounds.mainBackground) {
-            sounds.mainBackground.pause();
-            sounds.mainBackground.currentTime = 0;
+        if (window.sounds && window.sounds.mainBackground) {
+            window.sounds.mainBackground.pause();
+            window.sounds.mainBackground.currentTime = 0;
         }
         // Set audio settings and start
-        sounds.mainBackground.loop = true; // Infinite loop
+        window.sounds.mainBackground.loop = true; // Infinite loop
 </script>
 </html>
