@@ -29,6 +29,7 @@
 </head>
 <body style="display:flex; justify-content:center; align-items:center; flex-direction:column">
     <div id="soundBar">
+        <a href="impressum.html"><button>Zum Impressum</button></a>
         <button id="soundButton" style="width:60px;height:60px;"  title="Sound an">🔇</button>
     </div>
     <p id="verticalModeMessage" class="hidden">Bitte im Querformat spielen</p>
@@ -87,16 +88,9 @@
                 "won": new Audio("audio/won.mp3"),
                 "lose": new Audio("audio/lose.mp3"),
         };
-        /**
-         * returns the local storage value of SoundButtonStatus as a boolean 
-         **/
         function getSoundButtonStatus(){
             return JSON.parse(localStorage.getItem("soundButtonStatus"));
         };
-        /**
-         * Toggles the sound button status and saves the new state to local storage.
-         * If the current status is null or false, it switches to true; otherwise, it switches to false.
-         */
         function toggleSoundButtonStatus() {
             let currentStatus = getSoundButtonStatus();
             let newStatus = (currentStatus === null || currentStatus === false) ? true : !currentStatus;
@@ -110,9 +104,6 @@
             });
         }
         setSoundsToSoundButtonStatus();
-        /**
-         *sets sound icon
-         */
         function setSoundIcon(){
             console.log("sets sound icon");
             getSoundButtonStatus() === true ? soundButton.innerText = '🔇' : soundButton.innerText = '🔊';
@@ -135,15 +126,11 @@
         }
 
         console.log(getSoundButtonStatus());
-        // Mark that the listener has been set
         soundButton.setAttribute('data-listener-set', 'true');
-        // Stop previous audio if it's running
-        // Important: pause() stops playback, currentTime = 0 resets to beginning
         if (window.sounds && window.sounds.mainBackground) {
             window.sounds.mainBackground.pause();
             window.sounds.mainBackground.currentTime = 0;
         }
-        // Set audio settings and start
-        window.sounds.mainBackground.loop = true; // Infinite loop
+        window.sounds.mainBackground.loop = true;
 </script>
 </html>
