@@ -5,13 +5,13 @@ class Endboss extends MoveableObject {
     lives = 6000;
     attackTime = 0;
     animationFrameCounter = 0;
-    animationFrameSkip = 5;
+    animationFrameSkip = 0.5;
 
     IMAGE_INTRODUCE = [
-        //'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
-        //'img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
-        //'img/2.Enemy/3 Final Enemy/1.Introduce/3.png',
-        //'img/2.Enemy/3 Final Enemy/1.Introduce/4.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/3.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/4.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/5.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/6.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/7.png',
