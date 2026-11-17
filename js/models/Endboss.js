@@ -39,7 +39,7 @@ class Endboss extends MoveableObject {
     IMAGE_ATTACK = [
         'img/2.Enemy/3 Final Enemy/Attack/1.png',
         'img/2.Enemy/3 Final Enemy/Attack/2.png',
-        'img/2.Enemy/3 Final Enemy/Attack/3.png',
+        'img/2.Enemy/3 Final enemy/Attack/3.png',
         'img/2.Enemy/3 Final Enemy/Attack/4.png',
         'img/2.Enemy/3 Final Enemy/Attack/5.png',
         'img/2.Enemy/3 Final Enemy/Attack/6.png'
@@ -57,56 +57,48 @@ class Endboss extends MoveableObject {
         }
     }    
 
-    shootBubble(){
+    shootBubble() {
         this.canAttack = false;
-        this.attack = true;
         let bubble;
-        if(!this.otherDirection){
-            bubble = new Bubble(this.x + this.width + this.world.cameraX, this.y + this.height/2);
-        }else{
-            bubble = new Bubble(this.x - this.width - this.world.cameraX, this.y + this.height/2);
-        }
+        bubble = new Bubble(this.x - 50, this.y + this.height / 2);
         this.bubbles.push(bubble);
-        this.world.addToMap(this.bubbles[this.bubbles.length-1]);
+        this.world.addToMap(this.bubbles[this.bubbles.length - 1]);
     }
 
-    followCharacter() {
-        if (this.y < this.world.character.y && this.y < this.world.canvas.height - this.height - this.world.uiArea) {
-            this.moveDown();
+    followCharacter(){
+        if(this.lives >= 3000){
+            if (this.y < this.world.character.y && this.y < this.world.canvas.height - this.height - this.world.uiArea) {
+                this.moveDown();
+            }
+            else{
+                this.moveUp();
+            }
         }
-        else if (this.y > this.world.character.y) {
-            this.moveUp();
-        }
-        if(this.lives<= 3000){
+        else{
             this.x > this.world.character.x ? this.moveLeft() : this.moveRight();
         }
-        //this.playAnimation(this.IMAGE_ATTACK);
-        /*
-        if (this.x < world.character.x) {
-            this.otherDirection = true;
-            this.moveRight();
-        } else if (this.x > world.character.x) {
-            this.otherDirection = false;
-            this.moveLeft();
-        }
-        */
     }
 
-    /**
-     * decides over movement from endboss
-     * @param {number} microseconds determines the speed of the animation
-     */
+    attackCharacter(){
+        this.followCharacter();
+    }
+
     move(microseconds) {
         this.moveInterval = setInterval(() => {
             if (this.isDead) {
                 clearInterval(this.moveInterval);
                 return;
             }
-            this.followCharacter();
+            this.attackCharacter();
         }, microseconds);
+
+        window.setStoppableInterval(() => {
+            if (!this.isDead) {
+                this.shootBubble();
+            }
+        }, 2000);
     }
     
-
     constructor() {
         super();
         this.world = world;
@@ -119,8 +111,9 @@ class Endboss extends MoveableObject {
         this.y = 0;
         this.move(80);
     }
+
     reset() {
-        this.reset();
+        super.reset();
         this.lives = 6000;
         this.isHurt = false;
         this.isDead = false;

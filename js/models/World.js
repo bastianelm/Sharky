@@ -1,53 +1,20 @@
-/**
- * Represents the game world and manages rendering, collisions, UI, and enemy creation.
- */
 class World {
 
-    /** @type {boolean} Indicates if the first contact occurred. */
     firstContact = false;
-
-    /** @type {Level} The current level object. */
     level = level1;
-
-    /** @type {Array} Background objects for the current level. */
     backgroundObjects = this.level.backgroundObjects;
-
-    /** @type {Character} The main character of the game. */
     character = new Character();
-
-    /** @type {number} The horizontal camera offset. */
     cameraX = 0;
-
-    /** @type {HTMLCanvasElement} The game canvas. */
     canvas;
-
-    /** @type {CanvasRenderingContext2D} The 2D drawing context. */
     ctx;
-
-    /** @type {Keyboard} The keyboard input handler. */
     keyboard;
-
-    /** @type {number} The start time of the game. */
     startTime = performance.now();
-
-    /** @type {number} The last time an enemy was created. */
     lastEnemyCreation = this.startTime;
-
-    /** @type {boolean} Whether the end boss has been spawned. */
     endbossSpawned = false;
-
-    /** @type {number|undefined} Reference to the current game loop frame. */
     gameLoop;
-
-    /** @type {boolean} Whether the game is over. */
     gameOver = false;
+    endBoss;
 
-
-    /**
-     * Constructor
-     * @param {HTMLCanvasElement} canvas - The canvas element to render on.
-     * @param {Keyboard} keyboard - The keyboard input handler.
-     */
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -61,40 +28,24 @@ class World {
         this.uiArea = 50;
     }
 
-    /**
-     * setWorld => sets world to this (references to the World object)
-     */
     setWorld(){
         this.character.world = this;
     }
 
-    /**
-     * addObjectsToMap => adds objects to map
-     * @param {Array} objects - The objects to be added to the map.
-     */
     addObjectsToMap(objects){
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
-    /**
-     * addToMap => adds an object to map
-     * @param {DrawableObject} object - The object to render on the map.
-     */
     addToMap(object){
         if (object.otherDirection) {
-            /** turns around the image */
             object.renderFlippedImage(this.ctx);
         } else {
-            /** normal drawing */
             object.renderImage(this.ctx);
         }
     }
 
-    /**
-     * checkCollisions => checks collisions between a lot of objects on each other and executes methods if they are meeting together
-     */
     checkCollisions(){
         this.level.enemies.forEach(enemy => {
             this.character.bubbles.forEach(bubble => {
@@ -105,7 +56,15 @@ class World {
                 }
             });
         });
-
+        if(this.endbossSpawned === true){
+            this.endBoss.bubbles.forEach(bubble => {
+                if(this.character.isColliding(bubble)){
+                    this.character.hit(10);
+                    this.character.setHurt();
+                    this.healthBar.setPercentage(this.character.lives/(1000/100));
+                }
+            })
+        }
         this.level.enemies.forEach(enemy => {
             if(this.character.isColliding(enemy) && !enemy.isDead){
                 if(this.character.attack && this.character.attackKey === 68){
@@ -150,10 +109,6 @@ class World {
         });
     }
 
-    /**
-     * waitForImage => waits for Image to render
-     * @param {DrawableObject} drawableObj - The object whose image should be rendered when loaded.
-     */
     waitForImage = (drawableObj) => {
         if (drawableObj.img && drawableObj.img.complete) {
             this.addToMap(drawableObj);
@@ -162,15 +117,28 @@ class World {
         }
     };
 
-    /**
-     * drawWorld => draws the world, manages bars (like coinBar for example), creates enemies and endboss
-     */
+    drawBubbles(){
+        if(this.character.bubbles.length !== 0){
+            this.addObjectsToMap(this.character.bubbles);
+            this.character.bubbles.forEach(bubble => {
+                bubble.x += 5;
+            });
+        }
+        if(this.endbossSpawned){
+            if(this.endBoss && this.endBoss.bubbles && this.endBoss.bubbles.length !== 0){
+                this.addObjectsToMap(this.endBoss.bubbles);
+                this.endBoss.bubbles.forEach(bubble => {
+                    bubble.x -= 5;
+                });
+            }
+        }
+    }
+
     drawWorld() {
-        //gameover conditions
         let wonGame = this.endbossSpawned === true && this.level.enemies[0].isDead === true && this.level.enemies[0].y <= 0;
         let lostGame = this.character.isDead === true && this.character.y <= 0;
         this.gameOver = wonGame || lostGame;
-        //if game over
+        
         if(this.gameOver){
             cancelAnimationFrame(this.gameLoop);
             this.character.reset();
@@ -180,7 +148,7 @@ class World {
             this.endScreen = new EndScreen(wonGame);
             this.endScreen.objects.forEach(img => {
                 this.waitForImage(img);
-            });           
+            });          
             canvas.addEventListener("click", (event) => {
                 const rect = canvas.getBoundingClientRect();
                 const clickX = event.clientX - rect.left;
@@ -203,66 +171,53 @@ class World {
             });
             return;
         } else{
-            //code for running game goes here
             console.log("game is running");
-              if(this.coinsBar.percentage !== 100){
-            let enemyCreationInterval = 2.5;
-            let now = performance.now();
-            if((now - this.lastEnemyCreation) / 1000 >= enemyCreationInterval){
-                let randomNumber = Math.floor(Math.random() * 2) + 1;
-                let enemy;
-                if(randomNumber === 1){
-                    enemy = new PufferFish(this.cameraX *-1 + this.canvas.width);
-                } else {
-                    enemy = new JellyFish(this.cameraX *-1 + this.canvas.width);
+            if(this.coinsBar.percentage !== 100){
+                let enemyCreationInterval = 2.5;
+                let now = performance.now();
+                let timeDiff = (now - this.lastEnemyCreation) / 1000;
+                if(timeDiff >= enemyCreationInterval){
+                    let randomNumber = Math.floor(Math.random() * 2) + 1;
+                    let enemy;
+                    if(randomNumber === 1){
+                        enemy = new PufferFish(this.cameraX *-1 + this.canvas.width);
+                    } else {
+                        enemy = new JellyFish(this.cameraX *-1 + this.canvas.width);
+                    }
+                    this.level.enemies.push(enemy);
+                    this.lastEnemyCreation = now;
                 }
-                this.level.enemies.push(enemy);
-                this.lastEnemyCreation = now;
+            } else{
+                if (!this.endbossSpawned) {
+                    if(this.character.otherDirection === true) this.character.otherDirection = false;
+                    this.character.x = 0;
+                    this.level.enemies = [];
+                    this.endBoss = new Endboss();
+                    this.level.enemies.push(this.endBoss);
+                    this.endbossSpawned = true;
+                }
             }
-        } else{
-            if (!this.endbossSpawned) {
-                if(this.character.otherDirection === true) this.character.otherDirection = false;
-                this.character.x = 0;
-                this.level.enemies = [];
-                this.level.enemies.push(new Endboss());
-                this.endbossSpawned = true;
+
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.save(); 
+            this.ctx.translate(this.cameraX, 0); 
+            this.addObjectsToMap(backgroundObjects);
+            this.addToMap(this.character);
+            this.addObjectsToMap(this.level.coins);
+            this.addObjectsToMap(this.level.enemies);
+            this.addObjectsToMap(this.level.poisonBottles);
+            this.ctx.restore();
+            this.addToMap(this.healthBar);
+            this.addToMap(this.coinsBar);
+            this.addToMap(this.bubblesBar);
+
+            this.drawBubbles();
+
+            this.checkCollisions();
+
+            if(!this.gameOver){
+                this.gameLoop = requestAnimationFrame(() => this.drawWorld());
             }
         }
-
-        /**
-         * does all the stuff on map
-         */
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.save(); /** aktuellen Zeichenkontext speichern */
-        this.ctx.translate(this.cameraX, 0); /** Kamera anwenden */
-        this.addObjectsToMap(backgroundObjects);
-        this.addToMap(this.character);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.poisonBottles);
-        this.ctx.restore(); /** Zeichenkontext wiederherstellen */
-        this.addToMap(this.healthBar);
-        this.addToMap(this.coinsBar);
-        this.addToMap(this.bubblesBar);
-
-        if(this.character.bubbles.length !== 0){
-            this.addObjectsToMap(this.character.bubbles);
-            this.character.bubbles.forEach(bubble => {
-                bubble.x += 5;
-            });
-        }
-
-        this.checkCollisions();
-
-        /**
-         * draws on repeat until gameOver is true
-         */
-        if(!this.gameOver){
-            this.gameLoop = requestAnimationFrame(() => this.drawWorld());
-        }
-        }
-
-      
     }
-
 }
