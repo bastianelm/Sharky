@@ -171,7 +171,6 @@ class World {
             });
             return;
         } else{
-            console.log("game is running");
             if(this.coinsBar.percentage !== 100){
                 let enemyCreationInterval = 2.5;
                 let now = performance.now();

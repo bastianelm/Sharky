@@ -105,7 +105,6 @@
         }
         setSoundsToSoundButtonStatus();
         function setSoundIcon(){
-            console.log("sets sound icon");
             getSoundButtonStatus() === true ? soundButton.innerText = '🔇' : soundButton.innerText = '🔊';
         }
         setSoundIcon();
@@ -116,16 +115,13 @@
             setSoundIcon();
 
             if (getSoundButtonStatus() === true) {
-                window.sounds.mainBackground.play().catch(e => console.log(e));
+                window.sounds.mainBackground.play();
                 window.sounds.mainBackground.loop = true;
             } else {
                 window.sounds.mainBackground.pause();
             }
-
-            console.log(getSoundButtonStatus());
         }
-
-        console.log(getSoundButtonStatus());
+        
         soundButton.setAttribute('data-listener-set', 'true');
         if (window.sounds && window.sounds.mainBackground) {
             window.sounds.mainBackground.pause();

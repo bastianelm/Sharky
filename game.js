@@ -90,13 +90,7 @@ function restartGame() {
     
     // Restart audio
     window.sounds.mainBackground.loop = true;
-    window.sounds.mainBackground.play().catch(error => {
-        console.error('Audio could not be played:', error);
-    });
 }
-
-// Debug output for development
-console.log('Game initialized');
 
 /**
  * Event listener for keyboard input (keys pressed)
